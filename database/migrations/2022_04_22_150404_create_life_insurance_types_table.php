@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('life_insurance_types', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre_seguro', 20);
             $table->timestamps();
         });
     }
