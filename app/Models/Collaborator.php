@@ -39,6 +39,7 @@ class Collaborator extends Model
         'estado_colaborador',
         'foto',
     ];
+    
 
     // * Relacion uno a muchos
 
@@ -80,8 +81,8 @@ class Collaborator extends Model
         return $this->belongsTo('App\Models\WorkArea');
     }
 
-    public function workEmploymentContract()
+    public function employmentContractTypes()
     {
-        return $this->belongsTo('App\Models\WorkEmploymentContract');
+        return $this->belongsTo('App\Models\EmploymentContractType');
     }
 }
