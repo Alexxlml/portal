@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('work_areas', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre_area', 50);
             $table->timestamps();
         });
     }
