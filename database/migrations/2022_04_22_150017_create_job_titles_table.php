@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('job_titles', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('level_titles_id')
+                ->constrained('level_titles')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->string('nombre_puesto', 100)->nullable();
             $table->timestamps();
         });
     }
