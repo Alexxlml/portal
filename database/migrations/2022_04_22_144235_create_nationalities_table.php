@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('nationalities', function (Blueprint $table) {
             $table->id();
+            $table->string('codigo', 3);
+            $table->string('pais', 100);
+            $table->string('gentilicio', 100)->nullable();
             $table->timestamps();
         });
     }
