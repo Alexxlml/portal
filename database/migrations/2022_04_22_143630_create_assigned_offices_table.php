@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('assigned_offices', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre_oficina', 50);
             $table->timestamps();
         });
     }
