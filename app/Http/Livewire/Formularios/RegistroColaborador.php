@@ -2,18 +2,22 @@
 
 namespace App\Http\Livewire\Formularios;
 
-use App\Models\AssignedOffice;
-use App\Models\Collaborator;
-use App\Models\JobTitle;
-use App\Models\Nationality;
-use App\Models\WorkArea;
+use Exception;
 use Livewire\Component;
+use App\Models\JobTitle;
+use App\Models\WorkArea;
+use App\Models\Nationality;
+use App\Models\Collaborator;
 use Livewire\WithFileUploads;
+use App\Models\AssignedOffice;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class RegistroColaborador extends Component
 {
     // ? Uso de clase WithFileUploads para la subida de archivos
     use WithFileUploads;
+    // ? Uso de clase LivewireAlert para las notificaciones y mensajes de confirmacion
+    use LivewireAlert;
 
     // ? Declaracion de variables formulario
     public $no_colaborador, $oficina_asignada, $nombre_1, $nombre_2, $ap_paterno, $ap_materno,
@@ -33,6 +37,50 @@ class RegistroColaborador extends Component
     // * Tipo Contrato
     public $tipo_contrato_honorarios;
 
+    // ? Inicio Alertas
+    public function getListeners()
+    {
+        return [
+            'registrar',
+            'cancelar'
+        ];
+    }
+
+    // ? Funcion que arroja un cuadro de confirmacion y redirige a ciertas funciones 
+    // ? dependiendo el boton que se presione
+    public function triggerConfirm()
+    {
+        $this->confirm('¿Quieres realizar este registro?', [
+            'position' => 'center',
+            'timer' => '',
+            'toast' => false,
+            'showConfirmButton' => true,
+            'onConfirmed' => 'registrar',
+            'showCancelButton' => true,
+            'onDismissed' => 'cancelar',
+            'cancelButtonText' => 'No',
+            'confirmButtonText' => 'Si',
+        ]);
+    }
+    // ? Funcion que arroja una alerta en caso de que se haga clic en el boton denied o NO
+    public function cancelar()
+    {
+        $this->alert('info', 'Se canceló el registro', [
+            'position' => 'top-end',
+            'timer' => 3000,
+            'toast' => true,
+            'timerProgressBar' => true,
+            'showConfirmButton' => false,
+            'onConfirmed' => '',
+            'showCancelButton' => false,
+            'onDismissed' => '',
+            'cancelButtonText' => 'No',
+            'confirmButtonText' => 'Si',
+            'text' => '',
+        ]);
+    }
+    // ? Fin Alertas
+
     // ? Funcion que renderiza la vista y las variables que consultan informacion de la base de datos
     public function render()
     {
@@ -51,6 +99,64 @@ class RegistroColaborador extends Component
             'areas',
             'puestos'
         ));
+    }
+
+    // ? Funcion de registro del colaborador (Se ejecuta cuando se confirma el guardado de informacion)
+
+    public function registrar()
+    {
+
+        /* $this->validate(); */
+
+        try {
+            /* DB::transaction(
+                function () {
+                    Producto::create([
+                        'nombre' => $this->nombre,
+                        'descripcion' => $this->descripcion,
+                        'categoria_id' => $this->categoria_seleccionada,
+                        'sucursal_id' => $this->sucursal_seleccionada,
+                        'estado_id' => 1,
+                        'precio' => $this->precio,
+                        'fecha_compra' => $this->fecha_compra,
+                        'comentarios' => NULL,
+                        'created_at' => Carbon::now(),
+                        'updated_at' => Carbon::now(),
+                    ]);
+                }
+            ); */
+
+            $this->flash(
+                'success',
+                'El colaborador ha sido registrado con éxito',
+                [
+                    'position' =>  'top-end',
+                    'timer' =>  4000,
+                    'timerProgressBar' => true,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
+                ]
+            );
+
+            return redirect()->route('registro-colaborador');
+        } catch (Exception $ex) {
+            $this->alert('error', 'Ha ocurrido un error', [
+                'position' => 'top-end',
+                'timer' => '3000',
+                'toast' => true,
+                'showConfirmButton' => false,
+                'onConfirmed' => '',
+                'showCancelButton' => false,
+                'onDismissed' => '',
+                'cancelButtonText' => 'No',
+                'confirmButtonText' => 'Si',
+                'timerProgressBar' => true,
+            ]);
+        }
     }
 
     // ? Funciones que escuchan los cambios en las variables de radio button y asignan el resultado en variables generales
