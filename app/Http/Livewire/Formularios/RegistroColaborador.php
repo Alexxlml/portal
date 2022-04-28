@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Formularios;
 
 use App\Models\AssignedOffice;
+use App\Models\Collaborator;
 use App\Models\JobTitle;
 use App\Models\Nationality;
 use App\Models\WorkArea;
@@ -102,7 +103,41 @@ class RegistroColaborador extends Component
     }
 
     // * Tipo Contrato
-    public function updatedTipoContratoHonorarios(){
+    public function updatedTipoContratoHonorarios()
+    {
         $this->tipo_contrato_honorarios ? $this->tipo_contrato = 1 : "";
+    }
+
+
+    // ? Generador de numero de colaborador de acuerdo al ultimo registro de la base de datos
+    public function generadorNoColaborador()
+    {
+        // * Numero de digitos que tendrá después del prefix
+        $length = 4;
+        // * Prefijo por defecto del numero de colaborador
+        $prefix = 'SC';
+        // * Consulta el ultimo colaborador registrado
+        $data = Collaborator::orderBy('id', 'desc')->first();
+
+        // * Condicion para revisar si existe un colaborador registrado
+        if (!$data) {
+            // * En caso de que no exista el primero numero sera SC0001 por defecto
+            $og_length = 3;
+            $last_number = 1;
+        } else {
+            $code = substr($data->no_colaborador, strlen($prefix) + 1);
+            $actual_last_number = ($code / 1) * 1;
+            $increment_last_number = $actual_last_number + 1;
+            $last_number_length = strlen($increment_last_number);
+            $og_length = $length - $last_number_length;
+            $last_number = $increment_last_number;
+        }
+        // * Se añaden la cantidad de ceros antes del numero consecuente
+        $zeros = "";
+        for ($i = 0; $i < $og_length; $i++) {
+            $zeros .= "0";
+        }
+        // * Retorna una cadena con el prefijo, la cantidad de ceros y el numero que sigue del ultimo registrado
+        return $prefix . $zeros . $last_number;
     }
 }
