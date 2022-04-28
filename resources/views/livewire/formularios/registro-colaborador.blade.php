@@ -52,32 +52,32 @@
                     {{-- --}}
                 </div>
                 <div class="mt-5 md:mt-8 md:col-span-2">
-                    <form action="#" method="POST">
+                    <form wire:submit.prevent="triggerConfirm">
                         <div class="grid grid-cols-6 gap-6">
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="nombre_1" class="block text-sm font-medium text-gray-700">Primer nombre</label>
-                                <input type="text" name="nombre_1" id="nombre_1" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model="nombre_1" type="text" name="nombre_1" id="nombre_1" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="nombre_2" class="block text-sm font-medium text-gray-700">Segundo nombre</label>
-                                <input type="text" name="nombre_2" id="nombre_2" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model="nombre_2" type="text" name="nombre_2" id="nombre_2" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="ap_paterno" class="block text-sm font-medium text-gray-700">Apellido paterno</label>
-                                <input type="text" name="ap_paterno" id="ap_paterno" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model="ap_paterno" type="text" name="ap_paterno" id="ap_paterno" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="ap_materno" class="block text-sm font-medium text-gray-700">Apellido Materno</label>
-                                <input type="text" name="ap_materno" id="ap_materno" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model="ap_materno" type="text" name="ap_materno" id="ap_materno" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6">
                                 <label for="fecha_nacimiento" class="block text-sm font-medium text-gray-700">Fecha de nacimiento</label>
-                                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model="fecha_nacimiento" type="date" name="fecha_nacimiento" id="fecha_nacimiento" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <fieldset class="col-span-6 sm:col-span-2">
@@ -87,15 +87,15 @@
                                 </div>
                                 <div class="mt-4 space-y-4">
                                     <div class="flex items-center">
-                                        <input id="genero_masculino" name="genero_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="genero_masculino" id="genero_masculino" name="genero_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="genero_masculino" class="ml-3 block text-sm font-medium text-gray-700"> Masculino </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="genero_femenino" name="genero_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="genero_femenino" id="genero_femenino" name="genero_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="genero_femenino" class="ml-3 block text-sm font-medium text-gray-700"> Femenino </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="genero_no_binario" name="genero_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="genero_no_binario" id="genero_no_binario" name="genero_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="genero_no_binario" class="ml-3 block text-sm font-medium text-gray-700"> No Binario </label>
                                     </div>
                                 </div>
@@ -108,15 +108,15 @@
                                 </div>
                                 <div class="mt-4 space-y-4">
                                     <div class="flex items-center">
-                                        <input id="estado_civil_soltero" name="estado_civil_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="estado_civil_soltero" id="estado_civil_soltero" name="estado_civil_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="estado_civil_soltero" class="ml-3 block text-sm font-medium text-gray-700"> Soltero </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="estado_civil_casado" name="estado_civil_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="estado_civil_casado" id="estado_civil_casado" name="estado_civil_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="estado_civil_casado" class="ml-3 block text-sm font-medium text-gray-700"> Casado </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="estado_civil_union_libre" name="estado_civil_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="estado_civil_union_libre" id="estado_civil_union_libre" name="estado_civil_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="estado_civil_union_libre" class="ml-3 block text-sm font-medium text-gray-700"> Unión Libre </label>
                                     </div>
                                 </div>
@@ -129,11 +129,11 @@
                                 </div>
                                 <div class="mt-4 space-y-4">
                                     <div class="flex items-center">
-                                        <input id="paternidad_si" name="paternidad_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="paternidad_si" id="paternidad_si" name="paternidad_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="paternidad_si" class="ml-3 block text-sm font-medium text-gray-700"> Si </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="paternidad_no" name="paternidad_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="paternidad_no" id="paternidad_no" name="paternidad_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="paternidad_no" class="ml-3 block text-sm font-medium text-gray-700"> No </label>
                                     </div>
                                 </div>
@@ -141,12 +141,12 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="curp" class="block text-sm font-medium text-gray-700">CURP</label>
-                                <input type="text" name="curp" id="curp" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model="curp" type="text" name="curp" id="curp" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="rfc" class="block text-sm font-medium text-gray-700">RFC</label>
-                                <input type="text" name="rfc" id="rfc" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model="rfc" type="text" name="rfc" id="rfc" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <fieldset class="col-span-6 sm:col-span-3">
@@ -156,11 +156,11 @@
                                 </div>
                                 <div class="mt-4 space-y-4">
                                     <div class="flex items-center">
-                                        <input id="tipo_seguro_sgm" name="tipo_seguro_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="tipo_seguro_sgm" id="tipo_seguro_sgm" name="tipo_seguro_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="tipo_seguro_sgm" class="ml-3 block text-sm font-medium text-gray-700"> Seguro GM </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input id="tipo_seguro_imss" name="tipo_seguro_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="tipo_seguro_imss" id="tipo_seguro_imss" name="tipo_seguro_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="tipo_seguro_imss" class="ml-3 block text-sm font-medium text-gray-700"> IMSS </label>
                                     </div>
                                 </div>
@@ -168,20 +168,19 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="no_seguro_social" class="block text-sm font-medium text-gray-700">No. Seguro Social</label>
-                                <input type="text" name="no_seguro_social" id="no_seguro_social" autocomplete="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model="no_seguro_social" type="text" name="no_seguro_social" id="no_seguro_social" autocomplete="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="no_pasaporte" class="block text-sm font-medium text-gray-700">No. Pasaporte</label>
-                                <input type="text" name="no_pasaporte" id="no_pasaporte" autocomplete="address-level2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model="no_pasaporte" type="text" name="no_pasaporte" id="no_pasaporte" autocomplete="address-level2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="no_visa" class="block text-sm font-medium text-gray-700">No. Visa</label>
-                                <input type="text" name="no_visa" id="no_visa" autocomplete="address-level1" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model="no_visa" type="text" name="no_visa" id="no_visa" autocomplete="address-level1" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -195,45 +194,44 @@
                     <p class="mt-1 text-sm text-gray-500"> </p>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form action="#" method="POST">
-                        <div class="grid grid-cols-6 gap-6">
+                    <div class="grid grid-cols-6 gap-6">
 
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="nombre_1" class="block text-sm font-medium text-gray-700">Domicilio</label>
-                                <input type="text" name="nombre_1" id="nombre_1" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="nombre_2" class="block text-sm font-medium text-gray-700">Colonia</label>
-                                <input type="text" name="nombre_2" id="nombre_2" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="ap_paterno" class="block text-sm font-medium text-gray-700">Municipio</label>
-                                <input type="text" name="ap_paterno" id="ap_paterno" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="ap_materno" class="block text-sm font-medium text-gray-700">Estado / Provincia</label>
-                                <input type="text" name="ap_materno" id="ap_materno" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="codigo_postal" class="block text-sm font-medium text-gray-700">Código Postal</label>
-                                <input type="email" name="codigo_postal" id="codigo_postal" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="nacionalidad" class="block text-sm font-medium text-gray-700">Nacionalidad</label>
-                                <select id="nacionalidad" name="nacionalidad" autocomplete="country-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option>United States</option>
-                                    <option>Canada</option>
-                                    <option>Mexico</option>
-                                </select>
-                            </div>
-
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="domicilio" class="block text-sm font-medium text-gray-700">Domicilio</label>
+                            <input wire:model="domicilio" type="text" name="domicilio" id="domicilio" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
-                    </form>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="colonia" class="block text-sm font-medium text-gray-700">Colonia</label>
+                            <input wire:model="colonia" type="text" name="colonia" id="colonia" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="municipio" class="block text-sm font-medium text-gray-700">Municipio</label>
+                            <input wire:model="municipio" type="text" name="municipio" id="municipio" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="estado" class="block text-sm font-medium text-gray-700">Estado / Provincia</label>
+                            <input wire:model="estado" type="text" name="estado" id="estado" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="codigo_postal" class="block text-sm font-medium text-gray-700">Código Postal</label>
+                            <input wire:model="codigo_postal" type="email" name="codigo_postal" id="codigo_postal" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="nacionalidad" class="block text-sm font-medium text-gray-700">Nacionalidad</label>
+                            <select wire:model="nacionalidad" id="nacionalidad" name="nacionalidad" autocomplete="country-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value=""></option>
+                                @foreach($nacionalidades as $nacionalidad)
+                                    <option value="{{ $nacionalidad->id }}">{{ $nacionalidad->gentilicio }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -247,58 +245,63 @@
                     <p class="mt-1 text-sm text-gray-500"> </p>
                 </div>
                 <div class="mt-5 md:mt-0 md:col-span-2">
-                    <form action="#" method="POST">
-                        <div class="grid grid-cols-6 gap-6">
+                    <div class="grid grid-cols-6 gap-6">
 
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="oficina_asignada" class="block text-sm font-medium text-gray-700">Oficina Asignada</label>
-                                <select id="oficina_asignada" name="oficina_asignada" autocomplete="country-office" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option>Costa Rica</option>
-                                    <option>Mexico</option>
-                                </select>
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="puesto" class="block text-sm font-medium text-gray-700">Area</label>
-                                <select id="puesto" name="puesto" autocomplete="job-title" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option>Software Development</option>
-                                    <option>Design</option>
-                                </select>
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="correo" class="block text-sm font-medium text-gray-700">Correo Institucional</label>
-                                <input type="email" name="correo" id="correo" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                            </div>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="puesto" class="block text-sm font-medium text-gray-700">Puesto</label>
-                                <select id="puesto" name="puesto" autocomplete="job-title" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option>Jr. Software Developer</option>
-                                    <option>Sr. Software Developer</option>
-                                </select>
-                            </div>
-
-                            <fieldset class="col-span-6 sm:col-span-3">
-                                <div>
-                                    <legend class="text-base font-medium text-gray-900">Tipo de contrato</legend>
-                                    <p class="text-sm text-gray-500">Elige una de las siguientes opciones</p>
-                                </div>
-                                <div class="mt-4 space-y-4">
-                                    <div class="flex items-center">
-                                        <input id="tipo_contrato_honorarios" name="tipo_contrato_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-                                        <label for="tipo_contrato_honorarios" class="ml-3 block text-sm font-medium text-gray-700"> Honorarios </label>
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                            <div class="col-span-6 sm:col-span-3">
-                                <label for="fecha_ingreso" class="block text-sm font-medium text-gray-700">Fecha de ingreso</label>
-                                <input type="date" name="fecha_ingreso" id="fecha_ingreso" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                            </div>
-
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="oficina_asignada" class="block text-sm font-medium text-gray-700">Oficina Asignada</label>
+                            <select wire:model="oficina_asignada" id="oficina_asignada" name="oficina_asignada" autocomplete="country-office" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value=""></option>
+                                @foreach($oficinas as $oficina)
+                                    <option value="{{ $oficina->id }}">{{ $oficina->region_oficina }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                    </form>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="area" class="block text-sm font-medium text-gray-700">Area</label>
+                            <select wire:model="area" id="area" name="area" autocomplete="job-title" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value=""></option>
+                                @foreach($areas as $area)
+                                    <option value="{{ $area->id }}">{{ $area->nombre_area }}</option>    
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="correo" class="block text-sm font-medium text-gray-700">Correo Institucional</label>
+                            <input wire:model="correo" type="email" name="correo" id="correo" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="puesto" class="block text-sm font-medium text-gray-700">Puesto</label>
+                            <select wire:model="puesto" id="puesto" name="puesto" autocomplete="job-title" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value=""></option>
+                                @foreach($puestos as $puesto)
+                                    <option value="{{ $puesto->id }}">{{ $puesto->puesto_completo }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <fieldset class="col-span-6 sm:col-span-3">
+                            <div>
+                                <legend class="text-base font-medium text-gray-900">Tipo de contrato</legend>
+                                <p class="text-sm text-gray-500">Elige una de las siguientes opciones</p>
+                            </div>
+                            <div class="mt-4 space-y-4">
+                                <div class="flex items-center">
+                                    <input wire:model="tipo_contrato_honorarios" id="tipo_contrato_honorarios" name="tipo_contrato_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                    <label for="tipo_contrato_honorarios" class="ml-3 block text-sm font-medium text-gray-700"> Honorarios </label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="col-span-6 sm:col-span-3">
+                            <label for="fecha_ingreso" class="block text-sm font-medium text-gray-700">Fecha de ingreso</label>
+                            <input wire:model="fecha_ingreso" type="date" name="fecha_ingreso" id="fecha_ingreso" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -307,5 +310,6 @@
         <div class="flex justify-end">
             <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Guardar</button>
         </div>
+        </form>
     </div>
 </div>
