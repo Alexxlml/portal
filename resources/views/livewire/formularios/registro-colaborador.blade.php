@@ -57,27 +57,27 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="nombre_1" class="block text-sm font-medium text-gray-700">Primer nombre</label>
-                                <input wire:model="nombre_1" type="text" name="nombre_1" id="nombre_1" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model.lazy="nombre_1" type="text" name="nombre_1" id="nombre_1" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="nombre_2" class="block text-sm font-medium text-gray-700">Segundo nombre</label>
-                                <input wire:model="nombre_2" type="text" name="nombre_2" id="nombre_2" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model.lazy="nombre_2" type="text" name="nombre_2" id="nombre_2" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="ap_paterno" class="block text-sm font-medium text-gray-700">Apellido paterno</label>
-                                <input wire:model="ap_paterno" type="text" name="ap_paterno" id="ap_paterno" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model.lazy="ap_paterno" type="text" name="ap_paterno" id="ap_paterno" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="ap_materno" class="block text-sm font-medium text-gray-700">Apellido Materno</label>
-                                <input wire:model="ap_materno" type="text" name="ap_materno" id="ap_materno" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model.lazy="ap_materno" type="text" name="ap_materno" id="ap_materno" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6">
                                 <label for="fecha_nacimiento" class="block text-sm font-medium text-gray-700">Fecha de nacimiento</label>
-                                <input wire:model="fecha_nacimiento" type="date" name="fecha_nacimiento" id="fecha_nacimiento" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model.lazy="fecha_nacimiento" type="date" name="fecha_nacimiento" id="fecha_nacimiento" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <fieldset class="col-span-6 sm:col-span-2">
@@ -87,15 +87,15 @@
                                 </div>
                                 <div class="mt-4 space-y-4">
                                     <div class="flex items-center">
-                                        <input wire:model="genero" id="genero_masculino" name="genero_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model.lazy="genero" id="genero_masculino" name="genero_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="genero_masculino" class="ml-3 block text-sm font-medium text-gray-700"> Masculino </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input wire:model="genero" id="genero_femenino" name="genero_radio" type="radio" value="2" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model.lazy="genero" id="genero_femenino" name="genero_radio" type="radio" value="2" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="genero_femenino" class="ml-3 block text-sm font-medium text-gray-700"> Femenino </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input wire:model="genero" id="genero_no_binario" name="genero_radio" type="radio" value="3" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model.lazy="genero" id="genero_no_binario" name="genero_radio" type="radio" value="3" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="genero_no_binario" class="ml-3 block text-sm font-medium text-gray-700"> No Binario </label>
                                     </div>
                                 </div>
@@ -108,15 +108,15 @@
                                 </div>
                                 <div class="mt-4 space-y-4">
                                     <div class="flex items-center">
-                                        <input wire:model="estado_civil" id="estado_civil_soltero" name="estado_civil_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model.lazy="estado_civil" id="estado_civil_soltero" name="estado_civil_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="estado_civil_soltero" class="ml-3 block text-sm font-medium text-gray-700"> Soltero </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input wire:model="estado_civil" id="estado_civil_casado" name="estado_civil_radio" type="radio" value="2" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model.lazy="estado_civil" id="estado_civil_casado" name="estado_civil_radio" type="radio" value="2" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="estado_civil_casado" class="ml-3 block text-sm font-medium text-gray-700"> Casado </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input wire:model="estado_civil" id="estado_civil_union_libre" name="estado_civil_radio" type="radio" value="3" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model.lazy="estado_civil" id="estado_civil_union_libre" name="estado_civil_radio" type="radio" value="3" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="estado_civil_union_libre" class="ml-3 block text-sm font-medium text-gray-700"> Unión Libre </label>
                                     </div>
                                 </div>
@@ -129,11 +129,11 @@
                                 </div>
                                 <div class="mt-4 space-y-4">
                                     <div class="flex items-center">
-                                        <input wire:model="paternidad" id="paternidad_no" name="paternidad_radio" type="radio" value="0" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model.lazy="paternidad" id="paternidad_no" name="paternidad_radio" type="radio" value="0" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="paternidad_no" class="ml-3 block text-sm font-medium text-gray-700"> No </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input wire:model="paternidad" id="paternidad_si" name="paternidad_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model.lazy="paternidad" id="paternidad_si" name="paternidad_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="paternidad_si" class="ml-3 block text-sm font-medium text-gray-700"> Si </label>
                                     </div>
                                 </div>
@@ -141,12 +141,12 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="curp" class="block text-sm font-medium text-gray-700">CURP</label>
-                                <input wire:model="curp" type="text" name="curp" id="curp" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model.lazy="curp" type="text" name="curp" id="curp" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="rfc" class="block text-sm font-medium text-gray-700">RFC</label>
-                                <input wire:model="rfc" type="text" name="rfc" id="rfc" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model.lazy="rfc" type="text" name="rfc" id="rfc" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <fieldset class="col-span-6 sm:col-span-3">
@@ -156,11 +156,11 @@
                                 </div>
                                 <div class="mt-4 space-y-4">
                                     <div class="flex items-center">
-                                        <input wire:model="tipo_seguro" id="tipo_seguro_sgm" name="tipo_seguro_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model.lazy="tipo_seguro" id="tipo_seguro_sgm" name="tipo_seguro_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="tipo_seguro_sgm" class="ml-3 block text-sm font-medium text-gray-700"> Seguro GM </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input wire:model="tipo_seguro" id="tipo_seguro_imss" name="tipo_seguro_radio" type="radio" value="2" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model.lazy="tipo_seguro" id="tipo_seguro_imss" name="tipo_seguro_radio" type="radio" value="2" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="tipo_seguro_imss" class="ml-3 block text-sm font-medium text-gray-700"> IMSS </label>
                                     </div>
                                 </div>
@@ -168,17 +168,17 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="no_seguro_social" class="block text-sm font-medium text-gray-700">No. Seguro Social</label>
-                                <input wire:model="no_seguro_social" type="text" name="no_seguro_social" id="no_seguro_social" autocomplete="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model.lazy="no_seguro_social" type="text" name="no_seguro_social" id="no_seguro_social" autocomplete="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="no_pasaporte" class="block text-sm font-medium text-gray-700">No. Pasaporte</label>
-                                <input wire:model="no_pasaporte" type="text" name="no_pasaporte" id="no_pasaporte" autocomplete="address-level2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model.lazy="no_pasaporte" type="text" name="no_pasaporte" id="no_pasaporte" autocomplete="address-level2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="no_visa" class="block text-sm font-medium text-gray-700">No. Visa</label>
-                                <input wire:model="no_visa" type="text" name="no_visa" id="no_visa" autocomplete="address-level1" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                <input wire:model.lazy="no_visa" type="text" name="no_visa" id="no_visa" autocomplete="address-level1" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                             </div>
                         </div>
                 </div>
@@ -198,32 +198,32 @@
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="domicilio" class="block text-sm font-medium text-gray-700">Domicilio</label>
-                            <input wire:model="domicilio" type="text" name="domicilio" id="domicilio" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <input wire:model.lazy="domicilio" type="text" name="domicilio" id="domicilio" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="colonia" class="block text-sm font-medium text-gray-700">Colonia</label>
-                            <input wire:model="colonia" type="text" name="colonia" id="colonia" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <input wire:model.lazy="colonia" type="text" name="colonia" id="colonia" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="municipio" class="block text-sm font-medium text-gray-700">Municipio</label>
-                            <input wire:model="municipio" type="text" name="municipio" id="municipio" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <input wire:model.lazy="municipio" type="text" name="municipio" id="municipio" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="estado" class="block text-sm font-medium text-gray-700">Estado / Provincia</label>
-                            <input wire:model="estado" type="text" name="estado" id="estado" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <input wire:model.lazy="estado" type="text" name="estado" id="estado" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="codigo_postal" class="block text-sm font-medium text-gray-700">Código Postal</label>
-                            <input wire:model="codigo_postal" type="text" name="codigo_postal" id="codigo_postal" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <input wire:model.lazy="codigo_postal" type="text" name="codigo_postal" id="codigo_postal" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="nacionalidad" class="block text-sm font-medium text-gray-700">Nacionalidad</label>
-                            <select wire:model="nacionalidad" id="nacionalidad" name="nacionalidad" autocomplete="country-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <select wire:model.lazy="nacionalidad" id="nacionalidad" name="nacionalidad" autocomplete="country-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value=""></option>
                                 @foreach($nacionalidades as $nacionalidad)
                                 <option value="{{ $nacionalidad->id }}">{{ $nacionalidad->gentilicio }}</option>
@@ -249,7 +249,7 @@
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="oficina_asignada" class="block text-sm font-medium text-gray-700">Oficina Asignada</label>
-                            <select wire:model="oficina_asignada" id="oficina_asignada" name="oficina_asignada" autocomplete="country-office" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <select wire:model.lazy="oficina_asignada" id="oficina_asignada" name="oficina_asignada" autocomplete="country-office" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value=""></option>
                                 @foreach($oficinas as $oficina)
                                 <option value="{{ $oficina->id }}">{{ $oficina->region_oficina }}</option>
@@ -259,7 +259,7 @@
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="area" class="block text-sm font-medium text-gray-700">Area</label>
-                            <select wire:model="area" id="area" name="area" autocomplete="job-title" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <select wire:model.lazy="area" id="area" name="area" autocomplete="job-title" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value=""></option>
                                 @foreach($areas as $area)
                                 <option value="{{ $area->id }}">{{ $area->nombre_area }}</option>
@@ -269,12 +269,12 @@
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="correo" class="block text-sm font-medium text-gray-700">Correo Institucional</label>
-                            <input wire:model="correo" type="email" name="correo" id="correo" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <input wire:model.lazy="correo" type="email" name="correo" id="correo" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="puesto" class="block text-sm font-medium text-gray-700">Puesto</label>
-                            <select wire:model="puesto" id="puesto" name="puesto" autocomplete="job-title" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <select wire:model.lazy="puesto" id="puesto" name="puesto" autocomplete="job-title" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value=""></option>
                                 @foreach($puestos as $puesto)
                                 <option value="{{ $puesto->id }}">{{ $puesto->puesto_completo }}</option>
@@ -289,7 +289,7 @@
                             </div>
                             <div class="mt-4 space-y-4">
                                 <div class="flex items-center">
-                                    <input wire:model="tipo_contrato" id="tipo_contrato_honorarios" name="tipo_contrato_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                    <input wire:model.lazy="tipo_contrato" id="tipo_contrato_honorarios" name="tipo_contrato_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                     <label for="tipo_contrato_honorarios" class="ml-3 block text-sm font-medium text-gray-700"> Honorarios </label>
                                 </div>
                             </div>
@@ -297,7 +297,7 @@
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="fecha_ingreso" class="block text-sm font-medium text-gray-700">Fecha de ingreso</label>
-                            <input wire:model="fecha_ingreso" type="date" name="fecha_ingreso" id="fecha_ingreso" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            <input wire:model.lazy="fecha_ingreso" type="date" name="fecha_ingreso" id="fecha_ingreso" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                         </div>
 
                     </div>
