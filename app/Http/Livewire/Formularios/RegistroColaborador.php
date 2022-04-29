@@ -10,20 +10,20 @@ use App\Models\Nationality;
 use App\Models\Collaborator;
 use Livewire\WithFileUploads;
 use App\Models\AssignedOffice;
+use Illuminate\Support\Facades\DB;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class RegistroColaborador extends Component
 {
     // ? Uso de clase WithFileUploads para la subida de archivos
-    use WithFileUploads;
     // ? Uso de clase LivewireAlert para las notificaciones y mensajes de confirmacion
-    use LivewireAlert;
+    use WithFileUploads, LivewireAlert;
 
     // ? Declaracion de variables formulario
     public $no_colaborador, $oficina_asignada, $nombre_1, $nombre_2, $ap_paterno, $ap_materno,
-        $fecha_nacimiento, $genero, $estado_civil, $curp, $rfc, $tipo_seguro, $no_seguro,
-        $no_pasaporte, $no_visa, $domicilio, $colonia, $municipio, $estado, $nacionalidad,
-        $codigo_postal, $paternidad, $puesto, $area, $correo, $tipo_contrato, $fecha_ingreso, $foto;
+        $fecha_nacimiento, $genero, $estado_civil, $curp, $rfc, $tipo_seguro = 0, $no_seguro = '',
+        $no_pasaporte = '', $no_visa = '', $domicilio, $colonia, $municipio, $estado, $nacionalidad,
+        $codigo_postal, $paternidad, $puesto, $area, $correo, $tipo_contrato, $fecha_ingreso, $foto, $foto_ruta;
 
     // ? Variables de radio button
     // * Genero
@@ -105,26 +105,50 @@ class RegistroColaborador extends Component
 
     public function registrar()
     {
-
         /* $this->validate(); */
-
         try {
-            /* DB::transaction(
+
+            // ? Se guarda en la variable no_colaborador el numero generado por la funcion generadora
+            $this->no_colaborador = $this->generadorNoColaborador();
+
+            // ? Guardado y extraccion de la foto del colaborador
+            $this->foto_ruta = $this->foto->storeAS('/public/images', $this->no_colaborador . ".jpg");
+             
+            DB::transaction(
                 function () {
-                    Producto::create([
-                        'nombre' => $this->nombre,
-                        'descripcion' => $this->descripcion,
-                        'categoria_id' => $this->categoria_seleccionada,
-                        'sucursal_id' => $this->sucursal_seleccionada,
-                        'estado_id' => 1,
-                        'precio' => $this->precio,
-                        'fecha_compra' => $this->fecha_compra,
-                        'comentarios' => NULL,
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now(),
+                    Collaborator::create([
+                        'no_colaborador' => $this->no_colaborador,
+                        'assigned_offices_id' => $this->oficina_asignada,
+                        'nombre_1' => $this->nombre_1,
+                        'nombre_2' => $this->nombre_2,
+                        'ap_paterno' => $this->ap_paterno,
+                        'ap_materno' => $this->ap_materno,
+                        'fecha_nacimiento' => $this->fecha_nacimiento,
+                        'genders_id' => $this->genero,
+                        'marital_statuses_id' => $this->estado_civil,
+                        'curp' => $this->curp,
+                        'rfc' => $this->rfc,
+                        'life_insurance_types_id' => $this->tipo_seguro,
+                        'no_seguro_social' => $this->no_seguro,
+                        'no_pasaporte' => $this->no_pasaporte,
+                        'no_visa_americana' => $this->no_visa,
+                        'domicilio' => $this->domicilio,
+                        'colonia' => $this->colonia,
+                        'municipio' => $this->municipio,
+                        'estado' => $this->estado,
+                        'nationalities_id' => $this->nacionalidad,
+                        'codigo_postal' => $this->codigo_postal,
+                        'paternidad' => $this->paternidad,
+                        'job_titles_id' => $this->puesto,
+                        'work_areas_id' => $this->area,
+                        'correo' => $this->correo,
+                        'employment_contract_types_id' => $this->tipo_contrato,
+                        'fecha_ingreso' => $this->fecha_ingreso,
+                        'estado_colaborador' => 1,
+                        'foto' => $this->foto_ruta,
                     ]);
                 }
-            ); */
+            );
 
             $this->flash(
                 'success',
