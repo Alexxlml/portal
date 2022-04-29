@@ -323,9 +323,11 @@
                             <label for="nacionalidad" class="block text-sm font-medium text-gray-700">Nacionalidad</label>
                             <select wire:model.lazy="nacionalidad" id="nacionalidad" name="nacionalidad" autocomplete="country-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value=""></option>
+                                @if($nacionalidades)
                                 @foreach($nacionalidades as $nacionalidad)
                                 <option value="{{ $nacionalidad->id }}">{{ $nacionalidad->gentilicio }}</option>
                                 @endforeach
+                                @endif
                             </select>
                             @error('nacionalidad')
                             <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -354,9 +356,11 @@
                             <label for="oficina_asignada" class="block text-sm font-medium text-gray-700">Oficina Asignada</label>
                             <select wire:model.lazy="oficina_asignada" id="oficina_asignada" name="oficina_asignada" autocomplete="country-office" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value=""></option>
+                                @if($oficinas)
                                 @foreach($oficinas as $oficina)
                                 <option value="{{ $oficina->id }}">{{ $oficina->region_oficina }}</option>
                                 @endforeach
+                                @endif
                             </select>
                             @error('oficina_asignada')
                             <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -369,9 +373,11 @@
                             <label for="area" class="block text-sm font-medium text-gray-700">Area</label>
                             <select wire:model.lazy="area" id="area" name="area" autocomplete="job-title" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value=""></option>
+                                @if($areas)
                                 @foreach($areas as $area)
                                 <option value="{{ $area->id }}">{{ $area->nombre_area }}</option>
                                 @endforeach
+                                @endif
                             </select>
                             @error('area')
                             <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -394,9 +400,11 @@
                             <label for="puesto" class="block text-sm font-medium text-gray-700">Puesto</label>
                             <select wire:model.lazy="puesto" id="puesto" name="puesto" autocomplete="job-title" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value=""></option>
+                                @if($puestos)
                                 @foreach($puestos as $puesto)
                                 <option value="{{ $puesto->id }}">{{ $puesto->puesto_completo }}</option>
                                 @endforeach
+                                @endif
                             </select>
                             @error('puesto')
                             <p class="mt-1 mb-1 text-xs text-red-600 italic">
