@@ -31,28 +31,31 @@
                                         <div>
                                         </div>
 
-                                        <div class="flex justify-center">
-
-                                            {{-- <div class="sm:row-start-1 sm:row-span-1 sm:col-start-1 sm:col-span-1">
-                                    <button wire:click="downloadImage" type="button" class="flex w-36 md:w-full flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-green-800 uppercase bg-white border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-500 hover:text-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z" clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                </div> --}}
-                                            <div class="w-40 md:w-36 lg:w-48">
-                                                <label class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                    </svg>
-                                                    <input type='file' wire:model="foto" class="hidden" />
-                                                </label>
-                                                @error('foto')
-                                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                                    {{ $message }}
-                                                </p>
-                                                @enderror
+                                        <div class="flex flex-col">
+                                            <div class="flex justify-center">
+                                                <div class="w-40 md:w-36 lg:w-48">
+                                                    <button wire:click="downloadImage" type="button" class="flex w-full flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-green-800 uppercase bg-white border border-green-600 rounded-lg shadow-lg cursor-pointer hover:bg-green-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z" clip-rule="evenodd" />
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="flex justify-center">
+                                                <div class="w-40 md:w-36 lg:w-48">
+                                                    <label class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                        </svg>
+                                                        <input type='file' wire:model="foto" class="hidden" />
+                                                    </label>
+                                                    @error('foto')
+                                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                        {{ $message }}
+                                                    </p>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -62,6 +65,22 @@
                             <div class="mt-5 md:mt-8 md:col-span-2">
                                 <form wire:submit.prevent="triggerConfirm">
                                     <div class="grid grid-cols-6 gap-6">
+
+                                        <div class="col-span-6 sm:col-span-2 text-center">
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-md font-medium bg-blue-100 text-blue-800">No. Colaborador: {{ $colaborador->no_colaborador }} </span>
+                                        </div>
+
+                                        <div class="col-span-6 sm:col-span-2 text-center">
+                                            @if($colaborador->estado_colaborador == 0)
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-md font-medium bg-red-100 text-red-800">Estado: Inactivo </span>
+                                            @else
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-md font-medium bg-green-100 text-green-800">Estado: Activo </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="col-span-6 sm:col-span-2 text-center">
+                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-md font-medium bg-blue-100 text-blue-800"> Antigüedad: {{ $antiquity }}</span>
+                                        </div>
 
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="nombre_1" class="block text-sm font-medium text-gray-700">Primer nombre</label>
