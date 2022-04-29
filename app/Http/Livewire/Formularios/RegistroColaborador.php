@@ -100,7 +100,8 @@ class RegistroColaborador extends Component
             $this->no_colaborador = $this->generadorNoColaborador();
 
             // ? Guardado y extraccion de la foto del colaborador
-            $this->foto_ruta = $this->foto->storeAS('/public/images', $this->no_colaborador . ".jpg");
+            $extension = $this->foto->getClientOriginalExtension();
+            $this->foto_ruta = $this->foto->storeAS('images/', $this->no_colaborador . "." . $extension);
              
             DB::transaction(
                 function () {
