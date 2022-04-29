@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Formularios;
 
 use Exception;
+use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\JobTitle;
 use App\Models\WorkArea;
@@ -11,25 +12,27 @@ use App\Models\Collaborator;
 use Livewire\WithFileUploads;
 use App\Models\AssignedOffice;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
-class RegistroColaborador extends Component
+class EdicionColaborador extends Component
 {
     // ? Uso de clase WithFileUploads para la subida de archivos
     // ? Uso de clase LivewireAlert para las notificaciones y mensajes de confirmacion
     use WithFileUploads, LivewireAlert;
 
+
     // ? Declaracion de variables formulario
-    public $no_colaborador, $oficina_asignada, $nombre_1, $nombre_2, $ap_paterno, $ap_materno,
+    public $colaborador, $oficina_asignada, $nombre_1, $nombre_2, $ap_paterno, $ap_materno,
         $fecha_nacimiento, $genero, $estado_civil, $curp, $rfc, $tipo_seguro, $no_seguro_social = '',
         $no_pasaporte = '', $no_visa = '', $domicilio, $colonia, $municipio, $estado, $nacionalidad,
-        $codigo_postal, $paternidad, $puesto, $area, $correo, $tipo_contrato, $fecha_ingreso, $foto, $foto_ruta;
+        $codigo_postal, $paternidad, $puesto, $area, $correo, $tipo_contrato, $fecha_ingreso, $foto, $foto_ruta, $antiquity;
 
     // ? Inicio Alertas
     public function getListeners()
     {
         return [
-            'registrar',
+            'actualizar',
             'cancelar'
         ];
     }
@@ -38,12 +41,12 @@ class RegistroColaborador extends Component
     // ? dependiendo el boton que se presione
     public function triggerConfirm()
     {
-        $this->confirm('¿Quieres realizar este registro?', [
+        $this->confirm('¿Quieres actualizar la información de este colaborador?', [
             'position' => 'center',
             'timer' => '',
             'toast' => false,
             'showConfirmButton' => true,
-            'onConfirmed' => 'registrar',
+            'onConfirmed' => 'actualizar',
             'showCancelButton' => true,
             'onDismissed' => 'cancelar',
             'cancelButtonText' => 'No',
@@ -53,19 +56,23 @@ class RegistroColaborador extends Component
     // ? Funcion que arroja una alerta en caso de que se haga clic en el boton denied o NO
     public function cancelar()
     {
-        $this->alert('info', 'Se canceló el registro', [
-            'position' => 'top-end',
-            'timer' => 3000,
-            'toast' => true,
-            'timerProgressBar' => true,
-            'showConfirmButton' => false,
-            'onConfirmed' => '',
-            'showCancelButton' => false,
-            'onDismissed' => '',
-            'cancelButtonText' => 'No',
-            'confirmButtonText' => 'Si',
-            'text' => '',
-        ]);
+        $this->alert(
+            'info',
+            'Se canceló la actualización',
+            [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+                'showConfirmButton' => false,
+                'onConfirmed' => '',
+                'showCancelButton' => false,
+                'onDismissed' => '',
+                'cancelButtonText' => 'No',
+                'confirmButtonText' => 'Si',
+                'text' => '',
+            ]
+        );
     }
     // ? Fin Alertas
 
@@ -97,7 +104,6 @@ class RegistroColaborador extends Component
         'puesto' => 'required',
         'tipo_contrato' => 'required',
         'fecha_ingreso' => 'required',
-        'foto' => 'required',
     ];
 
     // ? Mensajes personalizados para validaciones
@@ -143,13 +149,47 @@ class RegistroColaborador extends Component
         'puesto.required' => 'Elige una de las opciones',
         'tipo_contrato.required' => 'Este campo es obligatorio',
         'fecha_ingreso.required' => 'Este campo es obligatorio',
-        'foto.required' => 'Es necesario subir una fotografía',
     ];
+
+    // ? Función que recibe el ID del colaborador y carga el código antes de la renderización de la vista
+    public function mount($id)
+    {
+        // ? Consulta de la información del colaborador
+        $this->colaborador = Collaborator::find($id);
+
+        // ? Asignación de valores del colaborador a cada una de las diferentes variables del formulario
+        $this->oficina_asignada = $this->colaborador->assigned_offices_id;
+        $this->nombre_1 = $this->colaborador->nombre_1;
+        $this->nombre_2 = $this->colaborador->nombre_2;
+        $this->ap_paterno = $this->colaborador->ap_paterno;
+        $this->ap_materno = $this->colaborador->ap_materno;
+        $this->fecha_nacimiento = $this->colaborador->fecha_nacimiento;
+        $this->genero = $this->colaborador->genders_id;
+        $this->estado_civil = $this->colaborador->marital_statuses_id;
+        $this->curp = $this->colaborador->curp;
+        $this->rfc = $this->colaborador->rfc;
+        $this->tipo_seguro = $this->colaborador->life_insurance_types_id;
+        $this->no_seguro_social = $this->colaborador->no_seguro_social;
+        $this->no_pasaporte = $this->colaborador->no_pasaporte;
+        $this->no_visa = $this->colaborador->no_visa_americana;
+        $this->domicilio = $this->colaborador->domicilio;
+        $this->colonia = $this->colaborador->colonia;
+        $this->municipio = $this->colaborador->municipio;
+        $this->estado = $this->colaborador->estado;
+        $this->nacionalidad = $this->colaborador->nationalities_id;
+        $this->codigo_postal = $this->colaborador->codigo_postal;
+        $this->paternidad = $this->colaborador->paternidad;
+        $this->puesto = $this->colaborador->job_titles_id;
+        $this->area = $this->colaborador->work_areas_id;
+        $this->correo = $this->colaborador->correo;
+        $this->tipo_contrato = $this->colaborador->employment_contract_types_id;
+        $this->fecha_ingreso = $this->colaborador->fecha_ingreso;
+        $this->antiquity = Carbon::parse($this->fecha_ingreso)->shortAbsoluteDiffForHumans(Carbon::now());
+    }
 
     // ? Funcion que renderiza la vista y las variables que consultan informacion de la base de datos
     public function render()
     {
-
         // *  Carga de informacion
         $nacionalidades = Nationality::all();
         $oficinas = AssignedOffice::all();
@@ -158,7 +198,7 @@ class RegistroColaborador extends Component
             ->selectRaw('job_titles.id, CONCAT_WS(" ", level_titles.nombre_nivel, job_titles.nombre_puesto) AS puesto_completo')
             ->get();
 
-        return view('livewire.formularios.registro-colaborador', compact(
+        return view('livewire.formularios.edicion-colaborador', compact(
             'nacionalidades',
             'oficinas',
             'areas',
@@ -166,24 +206,46 @@ class RegistroColaborador extends Component
         ));
     }
 
-    // ? Funcion de registro del colaborador (Se ejecuta cuando se confirma el guardado de informacion)
-
-    public function registrar()
+    // ? Función para descargar la imagen del colaborador
+    public function downloadImage()
     {
+        return Storage::disk('public')->download($this->colaborador->foto);
+    }
+
+    public function actualizar()
+    {
+        // ? Actualizacion de fotografia
+
+        if ($this->foto != null) {
+            $this->validate([
+                'foto' => 'required|image|max:1024'
+            ]);
+            try {
+
+                Storage::delete('public/' . $this->colaborador->foto);
+
+                DB::transaction(function () {
+
+                    // ? Guardado y extraccion de la foto del colaborador
+                    $extension = $this->foto->getClientOriginalExtension();
+                    $this->foto_ruta = $this->foto->storeAS('images', $this->colaborador->no_colaborador . "." . $extension, 'public');
+
+                    Collaborator::where('no_colaborador', $this->colaborador->no_colaborador)
+                        ->update([
+                            'foto' => $this->foto_ruta
+                        ]);
+                });
+            } catch (Exception $ex) {
+                dd($ex);
+            }
+        }
+
         $this->validate();
-        try {
-
-            // ? Se guarda en la variable no_colaborador el numero generado por la funcion generadora
-            $this->no_colaborador = $this->generadorNoColaborador();
-
-            // ? Guardado y extraccion de la foto del colaborador
-            $extension = $this->foto->getClientOriginalExtension();
-            $this->foto_ruta = $this->foto->storeAS('images', $this->no_colaborador . "." . $extension, 'public');
+        try {   
 
             DB::transaction(
                 function () {
-                    Collaborator::create([
-                        'no_colaborador' => $this->no_colaborador,
+                    Collaborator::where('id', $this->colaborador->id)->update([
                         'assigned_offices_id' => $this->oficina_asignada,
                         'nombre_1' => $this->nombre_1,
                         'nombre_2' => $this->nombre_2,
@@ -210,15 +272,13 @@ class RegistroColaborador extends Component
                         'correo' => $this->correo,
                         'employment_contract_types_id' => $this->tipo_contrato,
                         'fecha_ingreso' => $this->fecha_ingreso,
-                        'estado_colaborador' => 1,
-                        'foto' => $this->foto_ruta,
                     ]);
                 }
             );
 
             $this->flash(
                 'success',
-                'El colaborador ha sido registrado con éxito',
+                'Se ha actualizado con éxito',
                 [
                     'position' =>  'top-end',
                     'timer' =>  4000,
@@ -232,9 +292,9 @@ class RegistroColaborador extends Component
                 ]
             );
 
-            return redirect()->route('registro-colaborador');
+            return redirect()->to('/edicion-colaborador/' . $this->colaborador->id);
         } catch (Exception $ex) {
-            $this->alert('error', 'Este colaborador ya ha sido registrado', [
+            $this->alert('error', 'Ha ocurrido un error', [
                 'position' => 'top-end',
                 'timer' => '3000',
                 'toast' => true,
@@ -247,37 +307,5 @@ class RegistroColaborador extends Component
                 'timerProgressBar' => true,
             ]);
         }
-    }
-
-    // ? Generador de numero de colaborador de acuerdo al ultimo registro de la base de datos
-    public function generadorNoColaborador()
-    {
-        // * Numero de digitos que tendrá después del prefix
-        $length = 4;
-        // * Prefijo por defecto del numero de colaborador
-        $prefix = 'SC';
-        // * Consulta el ultimo colaborador registrado
-        $data = Collaborator::orderBy('id', 'desc')->first();
-
-        // * Condicion para revisar si existe un colaborador registrado
-        if (!$data) {
-            // * En caso de que no exista el primero numero sera SC0001 por defecto
-            $og_length = 3;
-            $last_number = 1;
-        } else {
-            $code = substr($data->no_colaborador, strlen($prefix) + 1);
-            $actual_last_number = ($code / 1) * 1;
-            $increment_last_number = $actual_last_number + 1;
-            $last_number_length = strlen($increment_last_number);
-            $og_length = $length - $last_number_length;
-            $last_number = $increment_last_number;
-        }
-        // * Se añaden la cantidad de ceros antes del numero consecuente
-        $zeros = "";
-        for ($i = 0; $i < $og_length; $i++) {
-            $zeros .= "0";
-        }
-        // * Retorna una cadena con el prefijo, la cantidad de ceros y el numero que sigue del ultimo registrado
-        return $prefix . $zeros . $last_number;
     }
 }
