@@ -156,7 +156,7 @@ class RegistroColaborador extends Component
 
             return redirect()->route('registro-colaborador');
         } catch (Exception $ex) {
-            $this->alert('error', 'Ha ocurrido un error', [
+            $this->alert('error', 'Este colaborador ya ha sido registrado', [
                 'position' => 'top-end',
                 'timer' => '3000',
                 'toast' => true,
