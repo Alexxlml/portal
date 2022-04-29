@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Formularios\EdicionColaborador;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +32,5 @@ Route::middleware([
     Route::get('/registro-colaborador', function () {
         return view('vistas-c.registroColaborador');
     })->name('registro-colaborador');
+    Route::get('/edicion-colaborador/{id}', EdicionColaborador::class);
 });
