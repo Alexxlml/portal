@@ -45,6 +45,11 @@
                                         </svg>
                                         <input type='file' wire:model="foto" class="hidden" />
                                     </label>
+                                    @error('foto')
+                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -58,26 +63,49 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="nombre_1" class="block text-sm font-medium text-gray-700">Primer nombre</label>
                                 <input wire:model.lazy="nombre_1" type="text" name="nombre_1" id="nombre_1" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                @error('nombre_1') <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p> @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="nombre_2" class="block text-sm font-medium text-gray-700">Segundo nombre</label>
                                 <input wire:model.lazy="nombre_2" type="text" name="nombre_2" id="nombre_2" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                @error('nombre_2')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="ap_paterno" class="block text-sm font-medium text-gray-700">Apellido paterno</label>
                                 <input wire:model.lazy="ap_paterno" type="text" name="ap_paterno" id="ap_paterno" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                @error('ap_paterno')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="ap_materno" class="block text-sm font-medium text-gray-700">Apellido Materno</label>
                                 <input wire:model.lazy="ap_materno" type="text" name="ap_materno" id="ap_materno" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                @error('ap_materno')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6">
                                 <label for="fecha_nacimiento" class="block text-sm font-medium text-gray-700">Fecha de nacimiento</label>
                                 <input wire:model.lazy="fecha_nacimiento" type="date" name="fecha_nacimiento" id="fecha_nacimiento" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                @error('fecha_nacimiento')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <fieldset class="col-span-6 sm:col-span-2">
@@ -99,6 +127,11 @@
                                         <label for="genero_no_binario" class="ml-3 block text-sm font-medium text-gray-700"> No Binario </label>
                                     </div>
                                 </div>
+                                @error('genero')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </fieldset>
 
                             <fieldset class="col-span-6 sm:col-span-2">
@@ -120,6 +153,11 @@
                                         <label for="estado_civil_union_libre" class="ml-3 block text-sm font-medium text-gray-700"> Unión Libre </label>
                                     </div>
                                 </div>
+                                @error('estado_civil')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </fieldset>
 
                             <fieldset class="col-span-6 sm:col-span-2">
@@ -137,16 +175,31 @@
                                         <label for="paternidad_si" class="ml-3 block text-sm font-medium text-gray-700"> Si </label>
                                     </div>
                                 </div>
+                                @error('paternidad')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </fieldset>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="curp" class="block text-sm font-medium text-gray-700">CURP</label>
                                 <input wire:model.lazy="curp" type="text" name="curp" id="curp" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                @error('curp')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="rfc" class="block text-sm font-medium text-gray-700">RFC</label>
                                 <input wire:model.lazy="rfc" type="text" name="rfc" id="rfc" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                @error('rfc')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <fieldset class="col-span-6 sm:col-span-3">
@@ -164,21 +217,41 @@
                                         <label for="tipo_seguro_imss" class="ml-3 block text-sm font-medium text-gray-700"> IMSS </label>
                                     </div>
                                 </div>
+                                @error('tipo_seguro')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </fieldset>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="no_seguro_social" class="block text-sm font-medium text-gray-700">No. Seguro Social</label>
                                 <input wire:model.lazy="no_seguro_social" type="text" name="no_seguro_social" id="no_seguro_social" autocomplete="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                @error('no_seguro_social')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="no_pasaporte" class="block text-sm font-medium text-gray-700">No. Pasaporte</label>
                                 <input wire:model.lazy="no_pasaporte" type="text" name="no_pasaporte" id="no_pasaporte" autocomplete="address-level2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                @error('no_pasaporte')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="no_visa" class="block text-sm font-medium text-gray-700">No. Visa</label>
                                 <input wire:model.lazy="no_visa" type="text" name="no_visa" id="no_visa" autocomplete="address-level1" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                @error('no_visa')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                                @enderror
                             </div>
                         </div>
                 </div>
@@ -199,26 +272,51 @@
                         <div class="col-span-6 sm:col-span-3">
                             <label for="domicilio" class="block text-sm font-medium text-gray-700">Domicilio</label>
                             <input wire:model.lazy="domicilio" type="text" name="domicilio" id="domicilio" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            @error('domicilio')
+                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                {{ $message }}
+                            </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="colonia" class="block text-sm font-medium text-gray-700">Colonia</label>
                             <input wire:model.lazy="colonia" type="text" name="colonia" id="colonia" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            @error('colonia')
+                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                {{ $message }}
+                            </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="municipio" class="block text-sm font-medium text-gray-700">Municipio</label>
                             <input wire:model.lazy="municipio" type="text" name="municipio" id="municipio" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            @error('municipio')
+                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                {{ $message }}
+                            </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="estado" class="block text-sm font-medium text-gray-700">Estado / Provincia</label>
                             <input wire:model.lazy="estado" type="text" name="estado" id="estado" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            @error('estado')
+                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                {{ $message }}
+                            </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="codigo_postal" class="block text-sm font-medium text-gray-700">Código Postal</label>
                             <input wire:model.lazy="codigo_postal" type="text" name="codigo_postal" id="codigo_postal" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            @error('codigo_postal')
+                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                {{ $message }}
+                            </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
@@ -229,6 +327,11 @@
                                 <option value="{{ $nacionalidad->id }}">{{ $nacionalidad->gentilicio }}</option>
                                 @endforeach
                             </select>
+                            @error('nacionalidad')
+                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                {{ $message }}
+                            </p>
+                            @enderror
                         </div>
 
                     </div>
@@ -255,6 +358,11 @@
                                 <option value="{{ $oficina->id }}">{{ $oficina->region_oficina }}</option>
                                 @endforeach
                             </select>
+                            @error('oficina_asignada')
+                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                {{ $message }}
+                            </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
@@ -265,11 +373,21 @@
                                 <option value="{{ $area->id }}">{{ $area->nombre_area }}</option>
                                 @endforeach
                             </select>
+                            @error('area')
+                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                {{ $message }}
+                            </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="correo" class="block text-sm font-medium text-gray-700">Correo Institucional</label>
                             <input wire:model.lazy="correo" type="email" name="correo" id="correo" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            @error('correo')
+                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                {{ $message }}
+                            </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-6 sm:col-span-3">
@@ -280,6 +398,11 @@
                                 <option value="{{ $puesto->id }}">{{ $puesto->puesto_completo }}</option>
                                 @endforeach
                             </select>
+                            @error('puesto')
+                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                {{ $message }}
+                            </p>
+                            @enderror
                         </div>
 
                         <fieldset class="col-span-6 sm:col-span-3">
@@ -293,11 +416,21 @@
                                     <label for="tipo_contrato_honorarios" class="ml-3 block text-sm font-medium text-gray-700"> Honorarios </label>
                                 </div>
                             </div>
+                            @error('tipo_contrato')
+                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                {{ $message }}
+                            </p>
+                            @enderror
                         </fieldset>
 
                         <div class="col-span-6 sm:col-span-3">
                             <label for="fecha_ingreso" class="block text-sm font-medium text-gray-700">Fecha de ingreso</label>
                             <input wire:model.lazy="fecha_ingreso" type="date" name="fecha_ingreso" id="fecha_ingreso" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                            @error('fecha_ingreso')
+                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                {{ $message }}
+                            </p>
+                            @enderror
                         </div>
 
                     </div>
