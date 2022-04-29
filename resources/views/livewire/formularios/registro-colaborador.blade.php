@@ -87,15 +87,15 @@
                                 </div>
                                 <div class="mt-4 space-y-4">
                                     <div class="flex items-center">
-                                        <input wire:model="genero_masculino" id="genero_masculino" name="genero_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="genero" id="genero_masculino" name="genero_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="genero_masculino" class="ml-3 block text-sm font-medium text-gray-700"> Masculino </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input wire:model="genero_femenino" id="genero_femenino" name="genero_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="genero" id="genero_femenino" name="genero_radio" type="radio" value="2" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="genero_femenino" class="ml-3 block text-sm font-medium text-gray-700"> Femenino </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input wire:model="genero_no_binario" id="genero_no_binario" name="genero_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="genero" id="genero_no_binario" name="genero_radio" type="radio" value="3" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="genero_no_binario" class="ml-3 block text-sm font-medium text-gray-700"> No Binario </label>
                                     </div>
                                 </div>
@@ -108,15 +108,15 @@
                                 </div>
                                 <div class="mt-4 space-y-4">
                                     <div class="flex items-center">
-                                        <input wire:model="estado_civil_soltero" id="estado_civil_soltero" name="estado_civil_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="estado_civil" id="estado_civil_soltero" name="estado_civil_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="estado_civil_soltero" class="ml-3 block text-sm font-medium text-gray-700"> Soltero </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input wire:model="estado_civil_casado" id="estado_civil_casado" name="estado_civil_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="estado_civil" id="estado_civil_casado" name="estado_civil_radio" type="radio" value="2" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="estado_civil_casado" class="ml-3 block text-sm font-medium text-gray-700"> Casado </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input wire:model="estado_civil_union_libre" id="estado_civil_union_libre" name="estado_civil_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="estado_civil" id="estado_civil_union_libre" name="estado_civil_radio" type="radio" value="3" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="estado_civil_union_libre" class="ml-3 block text-sm font-medium text-gray-700"> Unión Libre </label>
                                     </div>
                                 </div>
@@ -129,12 +129,12 @@
                                 </div>
                                 <div class="mt-4 space-y-4">
                                     <div class="flex items-center">
-                                        <input wire:model="paternidad_si" id="paternidad_si" name="paternidad_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-                                        <label for="paternidad_si" class="ml-3 block text-sm font-medium text-gray-700"> Si </label>
+                                        <input wire:model="paternidad" id="paternidad_no" name="paternidad_radio" type="radio" value="0" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <label for="paternidad_no" class="ml-3 block text-sm font-medium text-gray-700"> No </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input wire:model="paternidad_no" id="paternidad_no" name="paternidad_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
-                                        <label for="paternidad_no" class="ml-3 block text-sm font-medium text-gray-700"> No </label>
+                                        <input wire:model="paternidad" id="paternidad_si" name="paternidad_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <label for="paternidad_si" class="ml-3 block text-sm font-medium text-gray-700"> Si </label>
                                     </div>
                                 </div>
                             </fieldset>
@@ -156,11 +156,11 @@
                                 </div>
                                 <div class="mt-4 space-y-4">
                                     <div class="flex items-center">
-                                        <input wire:model="tipo_seguro_sgm" id="tipo_seguro_sgm" name="tipo_seguro_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="tipo_seguro" id="tipo_seguro_sgm" name="tipo_seguro_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="tipo_seguro_sgm" class="ml-3 block text-sm font-medium text-gray-700"> Seguro GM </label>
                                     </div>
                                     <div class="flex items-center">
-                                        <input wire:model="tipo_seguro_imss" id="tipo_seguro_imss" name="tipo_seguro_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                        <input wire:model="tipo_seguro" id="tipo_seguro_imss" name="tipo_seguro_radio" type="radio" value="2" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                         <label for="tipo_seguro_imss" class="ml-3 block text-sm font-medium text-gray-700"> IMSS </label>
                                     </div>
                                 </div>
@@ -226,7 +226,7 @@
                             <select wire:model="nacionalidad" id="nacionalidad" name="nacionalidad" autocomplete="country-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value=""></option>
                                 @foreach($nacionalidades as $nacionalidad)
-                                    <option value="{{ $nacionalidad->id }}">{{ $nacionalidad->gentilicio }}</option>
+                                <option value="{{ $nacionalidad->id }}">{{ $nacionalidad->gentilicio }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -252,7 +252,7 @@
                             <select wire:model="oficina_asignada" id="oficina_asignada" name="oficina_asignada" autocomplete="country-office" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value=""></option>
                                 @foreach($oficinas as $oficina)
-                                    <option value="{{ $oficina->id }}">{{ $oficina->region_oficina }}</option>
+                                <option value="{{ $oficina->id }}">{{ $oficina->region_oficina }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -262,7 +262,7 @@
                             <select wire:model="area" id="area" name="area" autocomplete="job-title" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value=""></option>
                                 @foreach($areas as $area)
-                                    <option value="{{ $area->id }}">{{ $area->nombre_area }}</option>    
+                                <option value="{{ $area->id }}">{{ $area->nombre_area }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -277,7 +277,7 @@
                             <select wire:model="puesto" id="puesto" name="puesto" autocomplete="job-title" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value=""></option>
                                 @foreach($puestos as $puesto)
-                                    <option value="{{ $puesto->id }}">{{ $puesto->puesto_completo }}</option>
+                                <option value="{{ $puesto->id }}">{{ $puesto->puesto_completo }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -289,7 +289,7 @@
                             </div>
                             <div class="mt-4 space-y-4">
                                 <div class="flex items-center">
-                                    <input wire:model="tipo_contrato_honorarios" id="tipo_contrato_honorarios" name="tipo_contrato_radio" type="radio" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                                    <input wire:model="tipo_contrato" id="tipo_contrato_honorarios" name="tipo_contrato_radio" type="radio" value="1" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
                                     <label for="tipo_contrato_honorarios" class="ml-3 block text-sm font-medium text-gray-700"> Honorarios </label>
                                 </div>
                             </div>
