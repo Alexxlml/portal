@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Formularios;
 
+use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\JobTitle;
 use App\Models\WorkArea;
@@ -23,7 +24,7 @@ class EdicionColaborador extends Component
     public $colaborador, $oficina_asignada, $nombre_1, $nombre_2, $ap_paterno, $ap_materno,
         $fecha_nacimiento, $genero, $estado_civil, $curp, $rfc, $tipo_seguro, $no_seguro_social = '',
         $no_pasaporte = '', $no_visa = '', $domicilio, $colonia, $municipio, $estado, $nacionalidad,
-        $codigo_postal, $paternidad, $puesto, $area, $correo, $tipo_contrato, $fecha_ingreso, $foto, $foto_ruta;
+        $codigo_postal, $paternidad, $puesto, $area, $correo, $tipo_contrato, $fecha_ingreso, $foto, $foto_ruta, $antiquity;
 
     // ? Función que recibe el ID del colaborador y carga el código antes de la renderización de la vista
     public function mount($id)
@@ -58,6 +59,7 @@ class EdicionColaborador extends Component
         $this->correo = $this->colaborador->correo;
         $this->tipo_contrato = $this->colaborador->employment_contract_types_id;
         $this->fecha_ingreso = $this->colaborador->fecha_ingreso;
+        $this->antiquity = Carbon::parse($this->fecha_ingreso)->shortAbsoluteDiffForHumans(Carbon::now());
     }
 
     // ? Funcion que renderiza la vista y las variables que consultan informacion de la base de datos
@@ -77,5 +79,11 @@ class EdicionColaborador extends Component
             'areas',
             'puestos'
         ));
+    }
+
+    // ? Función para descargar la imagen del colaborador
+    public function downloadImage()
+    {
+        return Storage::disk('public')->download($this->colaborador->foto);
     }
 }
