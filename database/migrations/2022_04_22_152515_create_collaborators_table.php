@@ -38,7 +38,7 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->string('curp', 18)->nullable();
+            $table->string('curp', 18)->unique();
             $table->string('rfc', 15);
 
             $table->foreignId('life_insurance_types_id')
