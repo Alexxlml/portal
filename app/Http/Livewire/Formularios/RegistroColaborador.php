@@ -21,7 +21,7 @@ class RegistroColaborador extends Component
 
     // ? Declaracion de variables formulario
     public $no_colaborador, $oficina_asignada, $nombre_1, $nombre_2, $ap_paterno, $ap_materno,
-        $fecha_nacimiento, $genero, $estado_civil, $curp, $rfc, $tipo_seguro = 0, $no_seguro = '',
+        $fecha_nacimiento, $genero, $estado_civil, $curp, $rfc, $tipo_seguro, $no_seguro_social = '',
         $no_pasaporte = '', $no_visa = '', $domicilio, $colonia, $municipio, $estado, $nacionalidad,
         $codigo_postal, $paternidad, $puesto, $area, $correo, $tipo_contrato, $fecha_ingreso, $foto, $foto_ruta;
 
@@ -69,6 +69,83 @@ class RegistroColaborador extends Component
     }
     // ? Fin Alertas
 
+    // ? Declaración de Reglas de validación para campos del formulario
+    protected $rules = [
+        'nombre_1' => 'required|max:50|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+        'nombre_2' => 'max:50',
+        'ap_paterno' => 'required|max:50|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+        'ap_materno' => 'max:50',
+        'fecha_nacimiento' => 'required',
+        'genero' => 'required',
+        'estado_civil' => 'required',
+        'paternidad' => 'required',
+        'curp' => 'required|max:18|regex:/[A-Z0-9]/',
+        'rfc' => 'required|max:15|regex:/[A-Z0-9]/',
+        'tipo_seguro' => 'required',
+        'no_seguro_social' => 'max:15|regex:/[A-Z0-9]/',
+        'no_pasaporte' => 'max:10|regex:/[A-Z0-9]/',
+        'no_visa' => 'max:8|regex:/[A-Z0-9]/',
+        'domicilio' => 'required',
+        'colonia' => 'required',
+        'municipio' => 'required|regex:/[a-zA-Z]/',
+        'estado' => 'required|regex:/[a-zA-Z]/',
+        'codigo_postal' => 'required|regex:/^[0-9]{5}$/',
+        'nacionalidad' => 'required',
+        'oficina_asignada' => 'required',
+        'area' => 'required',
+        'correo' => 'required|email',
+        'puesto' => 'required',
+        'tipo_contrato' => 'required',
+        'fecha_ingreso' => 'required',
+        'foto' => 'required',
+    ];
+
+    // ? Mensajes personalizados para validaciones
+    protected $messages = [
+        'nombre_1.required' => 'Este campo es obligatorio',
+        'nombre_1.max' => 'Máximo 50 caracteres',
+        'nombre_1.regex' => 'Este campo solo debe contener letras y espacios',
+        'nombre_2.max' => 'Máximo 50 caracteres',
+        'ap_paterno.required' => 'Este campo es obligatorio',
+        'ap_paterno.max' => 'Máximo 50 caracteres',
+        'ap_paterno.regex' => 'Este campo solo debe contener letras y espacios',
+        'ap_materno.max' => 'Máximo 50 caracteres',
+        'fecha_nacimiento.required' => 'Esta campo es obligatorio',
+        'genero.required' => 'Elige una de las opciones',
+        'estado_civil.required' => 'Elige una de las opciones',
+        'paternidad.required' => 'Elige una de las opciones',
+        'curp.required' => 'Este campo es obligatorio',
+        'curp.max' => 'Máximo 18 caracteres',
+        'curp.regex' => 'Este campo solo puede contener letras y números',
+        'rfc.required' => 'Este campo es obligatorio',
+        'rfc.max' => 'Máximo 15 caracteres',
+        'rfc.regex' => 'Este campo solo puede contener letras y números',
+        'tipo_seguro.required' => 'Elige una de las opciones',
+        'no_seguro_social.max' => 'Máximo 15 caracteres',
+        'no_seguro_social.regex' => 'Este campo solo puede contener letras y números',
+        'no_pasaporte.max' => 'Máximo 10 caracteres',
+        'no_pasaporte.regex' => 'Este campo solo puede contener letras y números',
+        'no_visa.max' => 'Máximo 8 caracteres',
+        'no_visa.regex' => 'Este campo solo puede contener letras y números',
+        'domicilio.required' => 'Este campo es obligatorio',
+        'colonia.required' => 'Este campo no puede estar vacía',
+        'municipio.required' => 'Este campo es obligatorio',
+        'municipio.regex' => 'Este campo solo puede contener letras mayúsculas y minúsculas',
+        'estado.required' => 'Este campo es obligatorio',
+        'estado.regex' => 'Este campo solo puede contener letras mayúsculas y minúsculas',
+        'codigo_postal.required' => 'Este campo es obligatorio',
+        'codigo_posta.regex' => 'Este campo solo puede contener 5 digitos',
+        'nacionalidad.required' => 'Elige una de las opciones',
+        'oficina_asignada.required' => 'Elige una de las opciones',
+        'area.required' => 'Elige una de las opciones',
+        'correo.required' => 'Este campo es obligatorio',
+        'correo.email' => 'Este campo no tiene el formato correcto',
+        'puesto.required' => 'Elige una de las opciones',
+        'tipo_contrato.required' => 'Este campo es obligatorio',
+        'fecha_ingreso.required' => 'Este campo es obligatorio',
+        'foto.required' => 'Es necesario subir una fotografía',
+    ];
+
     // ? Funcion que renderiza la vista y las variables que consultan informacion de la base de datos
     public function render()
     {
@@ -93,7 +170,7 @@ class RegistroColaborador extends Component
 
     public function registrar()
     {
-        /* $this->validate(); */
+        $this->validate();
         try {
 
             // ? Se guarda en la variable no_colaborador el numero generado por la funcion generadora
@@ -118,7 +195,7 @@ class RegistroColaborador extends Component
                         'curp' => $this->curp,
                         'rfc' => $this->rfc,
                         'life_insurance_types_id' => $this->tipo_seguro,
-                        'no_seguro_social' => $this->no_seguro,
+                        'no_seguro_social' => $this->no_seguro_social,
                         'no_pasaporte' => $this->no_pasaporte,
                         'no_visa_americana' => $this->no_visa,
                         'domicilio' => $this->domicilio,
