@@ -19,10 +19,10 @@
                                     <div class="py-4 sm:px-3">
                                         <div class="flex justify-center">
                                             @if ($foto)
-                                            <img class="shadow-lg rounded-lg h-52 w-40 md:h-48 md:w-36 lg:h-64 lg:w-48" src="{{ $foto->temporaryUrl() }}" alt="">
+                                            <img class="object-cover shadow-lg rounded-lg h-52 w-40 md:h-48 md:w-36 lg:h-64 lg:w-48" src="{{ $foto->temporaryUrl() }}" alt="">
                                             @else
                                             @if (file_exists(public_path('storage/' . $colaborador->foto)))
-                                            <img class="shadow-lg rounded-lg h-52 w-40 md:h-48 md:w-36 lg:h-64 lg:w-48" src="{{ asset('storage/' . $colaborador->foto) }}" alt="">
+                                            <img class="object-cover shadow-lg rounded-lg h-52 w-40 md:h-48 md:w-36 lg:h-64 lg:w-48" src="{{ asset('storage/' . $colaborador->foto) }}" alt="">
                                             @else
                                             <img class="shadow-lg rounded-lg h-52 w-40 md:h-48 md:w-36 lg:h-64 lg:w-48" src="{{ asset('images/user_silcon.png') }}" alt="">
                                             @endif
