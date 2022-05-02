@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
-class PanelUsuarios extends Component
+class PanelColaboradores extends Component
 {
     // ? Invocacion de la paginacion
     use WithPagination, LivewireAlert;
@@ -117,7 +117,7 @@ class PanelUsuarios extends Component
     // ? Funcion por defecto para renderizar el contenido de la vista
     public function render()
     {
-        return view('livewire.paneles.panel-usuarios', [
+        return view('livewire.paneles.panel-colaboradores', [
             'colaboradores' => DB::table('v_collaborators')
                 ->where('no_colaborador', 'LIKE', "%{$this->search}%")
                 ->orWhere('nombre_completo', 'LIKE', "%{$this->search}%")

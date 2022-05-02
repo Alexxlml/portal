@@ -27,7 +27,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::get('/panel-colaboradores', function () {
-        return view('vistas-c.panelUsuarios');
+        return view('vistas-c.panelColaboradores');
     })->name('panel-colaboradores');
     Route::get('/registro-colaborador', function () {
         return view('vistas-c.registroColaborador');
