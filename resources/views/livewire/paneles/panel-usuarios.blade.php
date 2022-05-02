@@ -48,14 +48,40 @@
                 </td>
                 {{-- Vista Tablet>>>Escritorio --}}
                 <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">
-                <div>{{ $colaborador->puesto }}</div>
-                <div>{{ $colaborador->nombre_area }}</div>
+                    <div>{{ $colaborador->puesto }}</div>
+                    <div>{{ $colaborador->nombre_area }}</div>
                 </td>
 
                 <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">{{ $colaborador->correo }}</td>
                 <td class="px-3 py-4 text-sm text-gray-500">{{ $colaborador->region_oficina }}</td>
                 <td class="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                    <div class="flex justify-center py-4 cursor-pointer">
+                        <div class="transform text-yellow-500 hover:text-yellow-700 hover:scale-150">
+                            <a href="{{ url('/edicion-colaborador/' . $colaborador->id) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                    <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                        @if($colaborador->estado_colaborador == 1)
+                        <div class="transform text-red-500 hover:text-red-700 hover:scale-150">
+                            <a wire:click="triggerConfirm({{ $colaborador->id }})">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                        @else
+                        <div class="transform text-green-500 hover:text-green-700 hover:scale-150">
+                            <a wire:click="triggerConfirm2({{ $colaborador->id }})">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                        @endif
+                    </div>
                 </td>
             </tr>
             @endforeach
