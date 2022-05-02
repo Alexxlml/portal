@@ -33,8 +33,8 @@
             <tr>
                 <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
                     <div class="flex items-center">
-                        <div class="h-10 w-10 flex-shrink-0">
-                            <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                        <div class="h-20 w-20 flex-shrink-0">
+                            <img class="h-20 w-20 rounded-full" src="{{ asset('storage/' . $colaborador->foto) }}" alt="">
                         </div>
                         <div class="ml-4">{{ $colaborador->nombre_completo }}</div>
                     </div>
