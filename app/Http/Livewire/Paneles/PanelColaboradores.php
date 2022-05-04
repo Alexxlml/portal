@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Collaborator;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class PanelColaboradores extends Component
@@ -117,6 +118,8 @@ class PanelColaboradores extends Component
     // ? Funcion por defecto para renderizar el contenido de la vista
     public function render()
     {
+        // * Restriccion de para que solo administradores puedan ver esta vista
+        abort_if(Auth::user()->role_id == 2, 403, 'No tienes autorización para esta vista');
         return view('livewire.paneles.panel-colaboradores', [
             'colaboradores' => DB::table('v_collaborators')
                 ->where('no_colaborador', 'LIKE', "%{$this->search}%")

@@ -11,6 +11,7 @@ use App\Models\Collaborator;
 use Livewire\WithFileUploads;
 use App\Models\AssignedOffice;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class RegistroColaborador extends Component
@@ -158,6 +159,8 @@ class RegistroColaborador extends Component
             ->selectRaw('job_titles.id, CONCAT_WS(" ", level_titles.nombre_nivel, job_titles.nombre_puesto) AS puesto_completo')
             ->get();
 
+        // * Restriccion de para que solo administradores puedan ver esta vista
+        abort_if(Auth::user()->role_id == 2, 403, 'No tienes autorización para esta vista');
         return view('livewire.formularios.registro-colaborador', compact(
             'nacionalidades',
             'oficinas',
