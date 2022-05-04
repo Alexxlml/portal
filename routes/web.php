@@ -23,14 +23,25 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+    // ? Ruta Dashboard general
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    // ? Rutas de colaboradores
+    // * Panel
     Route::get('/panel-colaboradores', function () {
         return view('vistas-c.panelColaboradores');
     })->name('panel-colaboradores');
+    // * Formulario registro
     Route::get('/registro-colaborador', function () {
         return view('vistas-c.registroColaborador');
     })->name('registro-colaborador');
+    // * Formulario edicion
     Route::get('/edicion-colaborador/{id}', EdicionColaborador::class);
+
+    // ? Rutas Facturas
+    // * Panel
+    Route::get('/panel-facturas', function () {
+        return view('vistas-c.panelFacturas');
+    })->name('panel-facturas');
 });
