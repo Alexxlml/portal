@@ -15,6 +15,17 @@ return new class extends Migration
     {
         Schema::create('user_invoices', function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('collaborators_id')
+                ->constrained('collaborators')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->tinyInteger('no_quincena');
+            $table->string('ruta_pdf', 255);
+            $table->string('ruta_xml', 255);
+            $table->text('comentarios');
+
             $table->timestamps();
         });
     }

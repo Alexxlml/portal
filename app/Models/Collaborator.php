@@ -40,9 +40,13 @@ class Collaborator extends Model
         'estado_colaborador',
         'foto',
     ];
-    
+
 
     // * Relacion uno a muchos
+    public function userInvoices()
+    {
+        return $this->hasMany('App\Models\UserInvoice');
+    }
 
     // * Contenido Arriba
 
