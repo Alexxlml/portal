@@ -40,8 +40,12 @@ Route::middleware([
     Route::get('/edicion-colaborador/{id}', EdicionColaborador::class);
 
     // ? Rutas Facturas
-    // * Panel
+    // * Panel administradores
     Route::get('/panel-facturas', function () {
         return view('vistas-c.panelFacturas');
     })->name('panel-facturas');
+    // * Panel usuarios
+    Route::get('/panel-facturas-usuarios', function () {
+        return view('vistas-c.panelFacturasUsuarios');
+    })->name('panel-facturas-usuarios');
 });
