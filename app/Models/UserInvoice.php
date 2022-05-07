@@ -10,7 +10,7 @@ class UserInvoice extends Model
     use HasFactory;
 
     protected $fillable = [
-        'collaborator_id',
+        'collaborators_id',
         'no_quincena',
         'ruta_pdf',
         'ruta_xml',
