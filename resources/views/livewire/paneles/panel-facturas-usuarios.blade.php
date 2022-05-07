@@ -30,39 +30,37 @@
                 </tr>
                 @if ($facturas->count())
                 <tr>
-                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Nombre</th>
-                    <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Año y Mes</th>
-                    <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Quincena</th>
+                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Año y Mes</th>
+                    <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Quincena</th>
+                    <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Comentarios</th>
                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">PDF</th>
                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">XML</th>
+                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">Eliminar</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 bg-white">
                 @foreach($facturas as $factura)
                 <tr>
                     <td class="w-full max-w-0 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
-                        <div class="flex items-center">
-                            <div class="">{{ $factura->nombre_completo }}</div>
+                        <div class="flex flex-col items-start">
+                            <div class="">{{ ucwords(\Carbon\Carbon::parse($factura->created_at)->locale('es')->year) }}</div>
+                            <div class="">{{ ucwords(\Carbon\Carbon::parse($factura->created_at)->locale('es')->monthName) }}</div>
                         </div>
                         {{-- Vista Mobile --}}
                         <dl class="font-normal lg:hidden">
                             <dt class="sr-only">Title</dt>
-                            <dd class="mt-1 truncate text-gray-700">
-                                <div>Año: {{ ucwords(\Carbon\Carbon::parse($factura->created_at)->locale('es')->year) }}</div>
-                                <div>Mes: {{ ucwords(\Carbon\Carbon::parse($factura->created_at)->locale('es')->monthName) }}</div>
-                            </dd>
-                            <dt class="sr-only sm:hidden">Email</dt>
                             <dd class="mt-1 truncate text-gray-500 sm:hidden">No. Quincena: {{ $factura->no_quincena }}</dd>
+                            <dt class="sr-only sm:hidden">Email</dt>
+                            <dd class="mt-1 truncate text-gray-500 sm:hidden">Comentarios: {{ $factura->comentarios }}</dd>
                         </dl>
                     </td>
                     {{-- Vista Tablet>>>Escritorio --}}
                     <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">
-                        <div class="ml-2">{{ ucwords(\Carbon\Carbon::parse($factura->created_at)->locale('es')->year) }}</div>
-                        <div class="ml-2">{{ ucwords(\Carbon\Carbon::parse($factura->created_at)->locale('es')->monthName) }}</div>
+                        <div class="ml-4">{{ $factura->no_quincena }}</div>
                     </td>
 
                     <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
-                        <div class="ml-4">{{ $factura->no_quincena }}</div>
+                        <div class="ml-4">{{ $factura->comentarios }}</div>
                     </td>
 
 
@@ -88,6 +86,17 @@
                             </div>
                         </div>
                     </td>
+                    <td class="py-4 pl-3 pr-3 text-right text-sm font-medium sm:pr-6">
+                        <div class="flex justify-center py-4 cursor-pointer">
+                            <div class="transform text-red-500 hover:text-red-700 hover:scale-150">
+                                <button wire:click="triggerConfirm({{ $factura->id }})" type="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
                 @endforeach
                 <!-- More people... -->
@@ -108,10 +117,21 @@
         <x-slot name="title">
             Formulario de carga
         </x-slot>
+        @if($facturas_quincena == 2)
+        <x-slot name="content">
+            Ya no puedes subir mas facturas
+        </x-slot>
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$set('switchModalSubida', false)" wire:loading.attr="disabled">
+                {{ __('Cerrar') }}
+            </x-jet-secondary-button>
+        </x-slot>
 
+        @else
         <x-slot name="content">
             <div class="mb-4">
                 <p>Carga aquí tus archivos</p>
+                <p class="text-xs text-slate-600">Facturas que puedes subir este mes: {{ (2 - $facturas_quincena) }}</p>
             </div>
             <div class="">
                 <label class="block">
@@ -153,5 +173,6 @@
                 {{ __('Subir') }}
             </x-jet-button>
         </x-slot>
+        @endif()
     </x-jet-dialog-modal>
 </div>
