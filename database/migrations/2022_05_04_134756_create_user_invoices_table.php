@@ -24,7 +24,7 @@ return new class extends Migration
             $table->tinyInteger('no_quincena');
             $table->string('ruta_pdf', 255);
             $table->string('ruta_xml', 255);
-            $table->text('comentarios');
+            $table->text('comentarios')->nullable();
 
             $table->timestamps();
         });
