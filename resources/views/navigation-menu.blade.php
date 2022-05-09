@@ -42,6 +42,31 @@
                         </x-jet-dropdown>
                     </div>
                     @endif
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-jet-dropdown align="left">
+                            <x-slot name="trigger">
+                                <button type="button" class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                    Facturas
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+
+                                <!-- Team Settings -->
+                                @if(auth()->user()->role_id == 1)
+                                <x-jet-dropdown-link href="{{  route('panel-facturas') }}">
+                                    {{ __('Panel') }}
+                                </x-jet-dropdown-link>
+                                @endif
+                                <x-jet-dropdown-link href="{{  route('panel-facturas-usuarios') }}">
+                                    {{ __('Carga') }}
+                                </x-jet-dropdown-link>
+
+                            </x-slot>
+
+                        </x-jet-dropdown>
+                    </div>
+
 
                 </div>
             </div>
