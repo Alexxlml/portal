@@ -2,11 +2,14 @@
 
 namespace App\Http\Livewire\Paneles;
 
+use App\Exports\UserInvoicesExport;
+use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\UserInvoice;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
 class PanelFacturas extends Component
@@ -24,6 +27,9 @@ class PanelFacturas extends Component
 
     // ? Declaracion de las variables que componen el queryString
     public $search, $perPage = '5';
+
+    // ? Variable que contendra los registros de facturas
+    public $reporte;
 
     public function render()
     {
@@ -44,5 +50,25 @@ class PanelFacturas extends Component
         $factura = UserInvoice::find($id);
         $tipo == 1 ? $ruta = $factura->ruta_pdf : $ruta = $factura->ruta_xml;
         return Storage::disk('public')->download($ruta);
+    }
+
+    public function export()
+    {
+        $this->fecha_actual = Carbon::now();
+        $this->reporte = DB::table('v_user_invoices')
+            ->select(
+                'id',
+                'no_colaborador',
+                'nombre_completo',
+                'no_quincena',
+                'ruta_pdf',
+                'ruta_xml',
+                'comentarios',
+                'year',
+                'month',
+                'created_at'
+            )
+            ->get();
+        return Excel::download(new UserInvoicesExport($this->reporte), 'Reporte_general_facturas(' . $this->fecha_actual . ').xlsx');
     }
 }
