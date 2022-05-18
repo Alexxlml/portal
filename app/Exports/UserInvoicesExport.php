@@ -31,6 +31,8 @@ class UserInvoicesExport implements FromCollection, WithHeadings
             'PDF',
             'XML',
             'Comentarios',
+            'Año',
+            'Mes',
             'Fecha de carga',
         ];
     }
