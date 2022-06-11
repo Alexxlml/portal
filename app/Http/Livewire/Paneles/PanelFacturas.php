@@ -74,8 +74,6 @@ class PanelFacturas extends Component
 
     public function export()
     {
-        // ? Se ejecuta la validacion de fechas de acuerdo a las reglas establecidas
-        $this->validate();
         // ? Si las reglas se cumplen se genera el reporte
         return $this->generateExportData($this->tipo_reporte);
     }
@@ -100,6 +98,8 @@ class PanelFacturas extends Component
                 ->get();
             $reporte = Excel::download(new UserInvoicesExport($this->reporte), 'Reporte-General-Facturas(' . $this->fecha_actual . ').xlsx');
         } elseif ($t_reporte == 2) {
+            // ? Se ejecuta la validacion de fechas de acuerdo a las reglas establecidas
+            $this->validate();
             // ? Conversion de fecha para añadir horas, minutos y segundos con Carbon
             // ? Esto se realiza para que la fecha final abarque al final del dia
             $dt = Carbon::create($this->fecha_final);
