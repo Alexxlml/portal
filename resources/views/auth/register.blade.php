@@ -21,7 +21,7 @@
 
             <div class="mt-4">
                 <x-jet-label for="role_id" value="{{ __('Rol') }}" />
-                <select id="role_id" class="block mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" type="text" name="role_id" :value="old('role_id')" required autofocus autocomplete="role_id">
+                <select id="role_id" class="block mt-1 w-full border-gray-300 focus:border-verde-silconio-300 focus:ring focus:ring-verde-silconio-200 focus:ring-opacity-50 rounded-md shadow-sm" type="text" name="role_id" :value="old('role_id')" required autofocus autocomplete="role_id">
                     <option value="1">Administrador</option>
                     <option value="2">Usuario</option>
                 </select>
