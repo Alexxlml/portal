@@ -4,7 +4,7 @@
             <tr>
                 <div class="flex">
                     <div class="basis-1/4 px-2 py-2 bg-white border-t border-gray-200 sm:px-3">
-                        <select wire:model='perPage' class=" border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mr-4">
+                        <select wire:model='perPage' class=" border-gray-300 rounded-md shadow-sm focus:ring-verde-silconio-500 focus:border-verde-silconio-500 sm:text-sm mr-4">
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="25">25</option>
@@ -13,7 +13,7 @@
                         </select>
                     </div>
                     <div class="basis-3/4 grow px-2 py-2 bg-white border-t border-gray-200 sm:px-3">
-                        <input wire:model="search" type="text" placeholder="Buscar" class="w-full col-span-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        <input wire:model="search" type="text" placeholder="Buscar" class="w-full col-span-3 border-gray-300 rounded-md shadow-sm focus:ring-verde-silconio-500 focus:border-verde-silconio-500 sm:text-sm">
                     </div>
                 </div>
             </tr>
@@ -73,7 +73,7 @@
                             </a>
                         </div>
                         @else
-                        <div class="transform text-green-500 hover:text-green-700 hover:scale-150">
+                        <div class="transform text-verde-silconio-500 hover:text-verde-silconio-700 hover:scale-150">
                             <a wire:click="triggerConfirm2({{ $colaborador->id }})">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
