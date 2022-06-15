@@ -423,6 +423,10 @@
                                     <input wire:model.lazy="tipo_contrato" id="tipo_contrato_honorarios" name="tipo_contrato_radio" type="radio" value="1" class="focus:ring-verde-silconio-500 h-4 w-4 text-verde-silconio-600 border-gray-300">
                                     <label for="tipo_contrato_honorarios" class="ml-3 block text-sm font-medium text-gray-700"> Honorarios </label>
                                 </div>
+                                <div class="flex items-center">
+                                    <input wire:model.lazy="tipo_contrato" id="tipo_contrato_asalariado" name="tipo_contrato_radio" type="radio" value="2" class="focus:ring-verde-silconio-500 h-4 w-4 text-verde-silconio-600 border-gray-300">
+                                    <label for="tipo_contrato_asalariado" class="ml-3 block text-sm font-medium text-gray-700"> Asalariado </label>
+                                </div>
                             </div>
                             @error('tipo_contrato')
                             <p class="mt-1 mb-1 text-xs text-red-600 italic">
