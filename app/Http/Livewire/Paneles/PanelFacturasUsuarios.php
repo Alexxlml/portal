@@ -114,7 +114,7 @@ class PanelFacturasUsuarios extends Component
         return view('livewire.paneles.panel-facturas-usuarios', [
             'facturas' => DB::table('v_user_invoices')
                 ->where('collaborators_id', $this->colaborador[0]->id)
-                ->orWhere('created_at', 'LIKE', "%{$this->search}%")
+                ->where('created_at', 'LIKE', "%{$this->search}%")
                 ->paginate($this->perPage)
         ]);
     }
