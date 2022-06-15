@@ -12,7 +12,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-        <link rel="icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon" />
+        <link rel="icon" href="{{ URL::asset('images/favicon.ico') }}" type="image/x-icon" />
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
