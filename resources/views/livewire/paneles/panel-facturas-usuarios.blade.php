@@ -147,7 +147,7 @@
             <div class="mt-4">
                 <label class="block">
                     <label class="ml-2">Elige tu XML</label>
-                    <input wire:model="f_xml" type="file" accept=".xml" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-celeste-guia-50 file:text-celeste-guia-700 hover:file:bg-celeste-guia-100" />
+                    <input wire:model="fXml" type="file" accept=".xml" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-celeste-guia-50 file:text-celeste-guia-700 hover:file:bg-celeste-guia-100" />
                 </label>
                 @error('f_xml')
                 <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -168,10 +168,11 @@
             <x-jet-secondary-button wire:click="$set('switchModalSubida', false)" wire:loading.attr="disabled">
                 {{ __('Cerrar') }}
             </x-jet-secondary-button>
-
+            @if($switchXml == true)
             <x-jet-button class="ml-2" wire:click="cargaFactura()" wire:loading.attr="disabled">
                 {{ __('Subir') }}
             </x-jet-button>
+            @endif
         </x-slot>
         @endif()
     </x-jet-dialog-modal>
