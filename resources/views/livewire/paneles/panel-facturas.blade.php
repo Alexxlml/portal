@@ -32,6 +32,7 @@
                     <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Nombre</th>
                     <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Año y Mes</th>
                     <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Quincena</th>
+                    <th scope="col" class="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Monto y Fecha Timbrado</th>
                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">PDF</th>
                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">XML</th>
                 </tr>
@@ -49,9 +50,10 @@
                             <dd class="mt-1 truncate text-gray-700">
                                 <div>Año: {{ ucwords(\Carbon\Carbon::parse($factura->created_at)->locale('es')->year) }}</div>
                                 <div>Mes: {{ ucwords(\Carbon\Carbon::parse($factura->created_at)->locale('es')->monthName) }}</div>
+                                <div>No. Quincena: {{ $factura->no_quincena }}</div>
+                                <div>Monto total: {{ $factura->monto_total }} {{ $factura->moneda }}</div>
+                                <div>Fecha Timbrado: {{ $factura->fecha_timbrado }}</div>
                             </dd>
-                            <dt class="sr-only sm:hidden">Email</dt>
-                            <dd class="mt-1 truncate text-gray-500 sm:hidden">No. Quincena: {{ $factura->no_quincena }}</dd>
                         </dl>
                     </td>
                     {{-- Vista Tablet>>>Escritorio --}}
@@ -64,6 +66,10 @@
                         <div class="ml-4">{{ $factura->no_quincena }}</div>
                     </td>
 
+                    <td class="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">
+                        <div class="ml-4">{{ $factura->monto_total }} {{ $factura->moneda }}</div>
+                        <div class="ml-4">{{ $factura->fecha_timbrado }}</div>
+                    </td>
 
                     <td class="py-4 pl-3 pr-3 text-right text-sm font-medium sm:pr-6">
                         <div class="flex justify-center py-4 cursor-pointer">

@@ -24,6 +24,9 @@ return new class extends Migration
             $table->tinyInteger('no_quincena');
             $table->string('ruta_pdf', 255);
             $table->string('ruta_xml', 255);
+            $table->double('monto_total');
+            $table->string('moneda', 3);
+            $table->dateTime('fecha_timbrado');
             $table->text('comentarios')->nullable();
 
             $table->timestamps();

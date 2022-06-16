@@ -14,6 +14,9 @@ class UserInvoice extends Model
         'no_quincena',
         'ruta_pdf',
         'ruta_xml',
+        'monto_total',
+        'moneda',
+        'fecha_timbrado',
         'comentarios',
     ];
 

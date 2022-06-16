@@ -28,12 +28,12 @@ class PanelFacturasUsuarios extends Component
     ];
 
     // ? Declaracion de variables
-    public $fecha_actual, $colaborador, $f_pdf, $f_xml, $comentarios, $year, $month, $day,
+    public $fecha_actual, $colaborador, $f_pdf, $fXml, $comentarios, $year, $month, $day,
         $firstDayOfMonth, $lasttDayOfMonth, $no_quincena, $ruta_pdf, $ruta_xml, $facturas_quincena,
-        $factura_id;
+        $factura_id, $montoTotal, $moneda, $fechaTimbrado;
 
     // ? Variables modal
-    public $switchModalSubida = false, $switchQuincena;
+    public $switchModalSubida = false, $switchQuincena, $switchXml = true;
 
     // ? Declaracion de las variables que componen el queryString
     public $search, $perPage = '5';
@@ -192,12 +192,12 @@ class PanelFacturasUsuarios extends Component
     {
         $this->validate([
             'f_pdf' => 'required|mimes:pdf',
-            'f_xml' => 'required|mimes:xml',
+            'fXml' => 'required|mimes:xml',
         ], [
             'f_pdf.required' => 'Este archivo es necesario',
             'f_pdf.mimes' => 'Este archivo debe ser PDF',
-            'f_xml.required' => 'Este archivo es necesario',
-            'f_xml.mimes' => 'Este archivo debe ser XML',
+            'fXml.required' => 'Este archivo es necesario',
+            'fXml.mimes' => 'Este archivo debe ser XML',
         ]);
         try {
 
@@ -208,8 +208,8 @@ class PanelFacturasUsuarios extends Component
             $og_name_pdf = $this->f_pdf->getClientOriginalName();
             $this->ruta_pdf = $this->f_pdf->storeAS($pre_ruta . $this->colaborador[0]->no_colaborador,  $og_name_pdf, 'public');
 
-            $og_name_xml = $this->f_xml->getClientOriginalName();
-            $this->ruta_xml = $this->f_xml->storeAS($pre_ruta . $this->colaborador[0]->no_colaborador,  $og_name_xml, 'public');
+            $og_name_xml = $this->fXml->getClientOriginalName();
+            $this->ruta_xml = $this->fXml->storeAS($pre_ruta . $this->colaborador[0]->no_colaborador,  $og_name_xml, 'public');
 
             // ? Insercion de registro en la base de datos
             UserInvoice::create([
@@ -217,6 +217,9 @@ class PanelFacturasUsuarios extends Component
                 'no_quincena' => $this->no_quincena,
                 'ruta_pdf' => $this->ruta_pdf,
                 'ruta_xml' => $this->ruta_xml,
+                'monto_total' => $this->montoTotal,
+                'moneda' => $this->moneda,
+                'fecha_timbrado' => $this->fechaTimbrado,
                 'comentarios' => $this->comentarios,
             ]);
 
@@ -250,6 +253,54 @@ class PanelFacturasUsuarios extends Component
                 'confirmButtonText' => 'Si',
                 'timerProgressBar' => true,
             ]);
+        }
+    }
+
+    // ? Funcion que valida que el archivo xml corresponda con su RFC
+    // ? Al RFC del usuario que esta realizando la subida de la misma
+    public function updatedFXml()
+    {
+        // * Se activa el boton de subida (Esto para cuando se corrige el archivo) 
+        $this->switchXml = true;
+        // * Se estrae el RFC del colaborador que actualmente inicio sesion (vease la funcion mount)
+        $rfc = $this->colaborador[0]->rfc;
+
+        // ? Inicia el tratamiento del archivo
+        // * Se solicita el archivo temporal del xml y se guarda en la variable contents
+        $contents = Storage::disk('local')->get("livewire-tmp/" . $this->fXml->getFilename());
+        // * Se reemplazan las etiquetas que impiden la lectura completa del archivo
+        $contents = str_replace("<tfd:", "<cfdi:", $contents);
+        $contents = str_replace("<cfdi:", "<", $contents);
+        $contents = str_replace("</cfdi:", "</", $contents);
+        // * Se convierte la cadena contents en un objeto de tipo simplexml
+        $ob = simplexml_load_string($contents);
+        // * Para poder acceder a todos los niveles del objeto, lo pasamos a JSON y despues a un Array asociativo
+        $json = json_encode($ob);
+        $arrayXml = json_decode($json, true);
+
+        // * Validacion de RFC del Usuario con el del emisor de la factura
+        // * Si no coinciden se manda una alerta para explicar que ambos RFC deben coincidir
+        // * Al no coincidir los RFC, se elimina el boton de subida hasta que estos coincidan
+        if ($rfc != $arrayXml["Emisor"]["@attributes"]["Rfc"]) {
+            $this->switchXml = false;
+            $this->alert('warning', 'Inconsistencia de datos', [
+                'position' => 'center',
+                'timer' => '',
+                'toast' => false,
+                'text' => 'El RFC del emisor de esta factura, no coincide con el RFC registrado de este usuario.
+
+                Intenta subir un archivo XML con tu RFC o pide a un administrador que corrija el RFC registrado en tu usuario.',
+                'showConfirmButton' => true,
+                'onConfirmed' => '',
+                'confirmButtonText' => 'Ok',
+                'timerProgressBar' => false,
+            ]);
+        } else {
+            // * Si coinciden ambos RFC entonces se guardan los datos
+            // * monto total, moneda y fecha de timbrado para su posterior subida a la BD
+            $this->montoTotal = $arrayXml["@attributes"]["Total"];
+            $this->moneda = $arrayXml["@attributes"]["Moneda"];
+            $this->fechaTimbrado = Carbon::parse($arrayXml["Complemento"]["TimbreFiscalDigital"]["@attributes"]["FechaTimbrado"]);
         }
     }
 
