@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Paneles;
 
+use App\Mail\FacturasUsuarios;
 use Exception;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -12,6 +13,7 @@ use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
@@ -222,6 +224,15 @@ class PanelFacturasUsuarios extends Component
                 'fecha_timbrado' => $this->fechaTimbrado,
                 'comentarios' => $this->comentarios,
             ]);
+
+            // ? Envio de correo
+            Mail::to('info@silcon.tech')->send(new FacturasUsuarios(
+                $this->colaborador[0]->nombre_1,
+                $this->colaborador[0]->ap_paterno,
+                $this->montoTotal,
+                $this->moneda,
+                $this->fechaTimbrado,
+            ));
 
             $this->flash(
                 'success',
