@@ -117,6 +117,7 @@ class PanelFacturasUsuarios extends Component
             'facturas' => DB::table('v_user_invoices')
                 ->where('collaborators_id', $this->colaborador[0]->id)
                 ->where('created_at', 'LIKE', "%{$this->search}%")
+                ->orderByDesc('id')
                 ->paginate($this->perPage)
         ]);
     }

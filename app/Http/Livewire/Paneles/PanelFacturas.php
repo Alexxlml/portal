@@ -59,6 +59,7 @@ class PanelFacturas extends Component
             'facturas' => DB::table('v_user_invoices')
                 ->where('nombre_completo', 'LIKE', "%{$this->search}%")
                 ->orWhere('created_at', 'LIKE', "%{$this->search}%")
+                ->orderByDesc('id')
                 ->paginate($this->perPage)
         ]);
     }
