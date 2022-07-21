@@ -58,7 +58,7 @@ class Collaborator extends Model
 
     public function genders()
     {
-        return $this->belongsTo('App\Models\Genders');
+        return $this->belongsTo('App\Models\Gender');
     }
 
     public function maritalStatuses()
