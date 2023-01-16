@@ -31,7 +31,7 @@ class PanelFacturasUsuarios extends Component
 
     // ? Declaracion de variables
     public $fecha_actual, $colaborador, $f_pdf, $fXml, $comentarios, $year, $month, $day,
-        $firstDayOfMonth, $lasttDayOfMonth, $no_quincena, $ruta_pdf, $ruta_xml, $facturas_quincena,
+        $firstDayOfMonth, $lastDayOfMonth, $no_quincena, $ruta_pdf, $ruta_xml, $facturas_quincena,
         $factura_id, $montoTotal, $moneda, $fechaTimbrado;
 
     // ? Variables modal
