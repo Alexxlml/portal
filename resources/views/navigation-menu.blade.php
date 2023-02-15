@@ -214,6 +214,26 @@
                 </div>
             </div>
             @endif
+            <div class="pt-4 pb-1 border-t border-gray-200">
+                <div class="flex items-center px-4">
+                    <div class="text-base font-medium text-gray-800">{{ __('Facturas') }}</div>
+                </div>
+                @if(auth()->user()->role_id == 1)
+                <div class="mt-3 space-y-1">
+                    <!-- Account Management -->
+                    <x-jet-responsive-nav-link href="{{  route('panel-facturas') }}">
+                        {{ __('- Panel') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+                @endif
+                <div class="mt-3 space-y-1">
+                    <!-- Account Management -->
+                    <x-jet-responsive-nav-link href="{{  route('panel-facturas-usuarios') }}">
+                        {{ __('- Carga') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+            </div>
+
 
 
         </div>
